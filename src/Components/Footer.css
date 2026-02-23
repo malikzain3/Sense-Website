@@ -1,7 +1,16 @@
+.footer-wrapper{
+    overflow:hidden;
+    background:white;
+}
+
 #Footer{
     background-color: #d3f2f3;
     padding: 0px 70px;
-    padding-top: 50px;
+    padding-top: 100px;
+    min-height: 50vh;
+    border-top-left-radius: 80% 120px;
+    border-top-right-radius: 80% 120px;
+    transform-origin: top center;
 }
 
 .Footer-Top{
@@ -16,7 +25,8 @@
 }
 
 .Footer-Sense-logo img{
-    width: 100px;
+    width: 150px;
+    height: 138px;
 }
 
 .Footer-Sense-Name{
