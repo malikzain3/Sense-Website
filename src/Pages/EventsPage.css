@@ -1,0 +1,21 @@
+
+#Events1 {
+  position: relative;
+  margin-top: 300px;
+  padding: 50px 70px;
+}
+
+.Neural-content {
+  position:relative;
+  z-index: 10;
+  top: 200px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.Neural-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #0e3946;
+  text-align: center;
+}

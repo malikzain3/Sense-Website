@@ -1,0 +1,46 @@
+#About{
+    padding: 50px 70px;
+    background-color: #d3f2f3;
+}
+
+.About-Heading{
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.About-Content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.About-left img{
+    width: 500px;
+    opacity: 0.4;
+}
+
+.About-left .Quote{
+    width: 500px;
+    font-size: 23px;
+    padding-left: 20px;
+    font-weight: 500;
+}
+
+.About-right{
+    width: 650px;
+}
+
+.About-right .About-right-heading{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.About-right-images{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.About-right-images img{
+    width: 318px;
+}

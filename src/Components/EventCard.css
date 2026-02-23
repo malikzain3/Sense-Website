@@ -1,0 +1,87 @@
+#Event-Card{
+    width: 381px;
+    border-radius: 10px;
+    /* background-color: #f5ead7; */
+    background-color: #d3f2f3;
+    box-shadow: 5px 5px 10px rgb(134, 134, 134);
+    margin-right: 30px;
+    transition: transform 0.3s ease;
+}
+
+#Event-Card:hover{
+    transform: scale(1.02);
+}
+
+.Event-Image img{
+    width: 381px;
+    border-radius: 8px;
+}
+
+.Event-Content{
+    padding: 15px 20px;
+    font-size: 12px;
+}
+
+.Event-Title{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.Event-Desc{
+    font-size: 15px;
+}
+
+.Event-Info{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.Event-Date{
+    font-size: 60px;
+    padding-bottom: 8px;
+}
+
+.Event-Month-Year{
+    margin-left: 7px;
+    line-height: 1.3;
+    font-size: 18px;
+    font-weight: 600;
+    padding-bottom: 17px;
+}
+
+.Event-Time-Venue{
+    margin-left: 25px;
+}
+
+.Event-Time-Venue div{
+    display: flex;
+    padding-bottom: 10px;
+}
+
+.Event-Time-Venue img{
+    margin-right: 6px;
+    width: 22px;
+}
+
+.Event-Status{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Status{
+    font-size: 15px;
+}
+
+.RSVP-Btn{
+    border: 2px solid black;
+    padding: 5px 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.RSVP-Btn:hover{
+    background-color: #1dbbc3;
+}

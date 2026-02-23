@@ -1,0 +1,42 @@
+#Team{
+    background-color: #fff;
+    padding: 50px 70px;
+}
+
+.Team-Heading{
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.Team-Text{
+    font-size: 23px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.Team-Member{
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+}
+
+.More-Team-Button{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.More-Team-Button Button{
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    font-weight: 500;
+}
+
+.More-Team-Button button:hover{
+    background-color: #1dbbc3;
+}
