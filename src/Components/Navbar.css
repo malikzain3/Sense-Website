@@ -62,6 +62,12 @@
     padding: 6px 25px;
     border-radius: 20px;
     cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.Join-us a{
+    text-decoration: none;
+    color:rgb(65, 65, 65);
 }
 
 .Join-us:hover{

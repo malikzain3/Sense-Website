@@ -1,7 +1,7 @@
 import React from 'react'
 import senseLogo from "../assets/SENSE-LOGO@4x-8.png"
-import gsap from "gsap"
-import { useGSAP } from "@gsap/react"
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import "./Footer.css"
 

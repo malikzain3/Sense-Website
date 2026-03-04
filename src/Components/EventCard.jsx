@@ -16,9 +16,7 @@ const EventCard = ({
 }) => {
     return (
         <div id='Event-Card'>
-            <div className="Event-Heading">
-                Events
-            </div>
+            
             <div className="Event-Image">
                 <img src={image} alt={title} />
             </div>

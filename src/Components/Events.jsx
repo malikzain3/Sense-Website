@@ -1,54 +1,32 @@
-import React from 'react'
-import "./Events.css"
-import EventCard from './EventCard'
-import event1 from "../assets/event1.jpg"
+import React from 'react';
+import EventCard from './EventCard';
+import eventsData from '../eventsData.js'; // Path check kar lena bache
+import "./Events.css";
 
 const Events = () => {
+  // Logic: Sab se naye events pehle, aur sirf 3 cards
+  const homeEvents = [...eventsData].reverse().slice(0, 3);
+
   return (
     <div id='Events'>
-      <div className="Events-Heading">
-        Events
-      </div>
+      <div className="Events-Heading"> Events</div>
+      
       <div className="Events-Content">
-        <EventCard
-          image={event1} 
-          title="Cultural Exchange Night" 
-          desc="Celebrate the beauty of diversity..."
-          date="28"
-          month=" Sep"
-          year=" 2026"
-          time="6:00 PM - 9:00 PM"
-          venue="Conference Room, Berkeley"
-          status="upcoming"
-        />
-        <EventCard
-          image={event1} 
-          title="Cultural Exchange Night" 
-          desc="Celebrate the beauty of diversity..."
-          date="28"
-          month=" Sep"
-          year=" 2026"
-          time="6:00 PM - 9:00 PM"
-          venue="Conference Room, Berkeley"
-          status="Completed"
-        />
-        <EventCard
-          image={event1} 
-          title="Cultural Exchange Night" 
-          desc="Celebrate the beauty of diversity..."
-          date="28"
-          month=" Sep"
-          year=" 2026"
-          time="6:00 PM - 9:00 PM"
-          venue="Conference Room, Berkeley"
-          status="upcoming"
-        />
+        {homeEvents.map((item) => (
+          <EventCard 
+            key={item.id} 
+            {...item} // Isse saara data (title, date, month, etc.) khud chala jayega
+          />
+        ))}
       </div>
+
       <div className="All-Events-Button">
-        <button onClick={() => window.location.href = '/EventsPage'}>SEE ALL EVENTS</button>
+        <button onClick={() => window.location.href = '/EventsPage'}>
+          SEE ALL EVENTS
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Events
+export default Events;

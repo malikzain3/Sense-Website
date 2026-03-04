@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import "./App.css";
 import About from "./Components/About";
 import Events from "./Components/Events";
@@ -9,6 +8,7 @@ import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
 import EventsPage from "./Pages/EventsPage";
 import Navbar from "./Components/Navbar";
+import LoginPage from "./Pages/LoginPage";
 
 function App() {
   return (
@@ -30,6 +30,7 @@ function App() {
         />
 
         <Route path="/EventsPage" element={<EventsPage />} />
+        <Route path="/LoginPage" element={<LoginPage />} />
       </Routes>
       <Footer />
     </>

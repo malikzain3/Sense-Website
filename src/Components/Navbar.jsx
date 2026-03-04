@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
         <div className="Nav-right">
             <div className="Join-us">
-                JOIN US
+                <Link to="/LoginPage">Login</Link>
             </div>
         </div>
     </div>
