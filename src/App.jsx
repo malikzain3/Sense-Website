@@ -9,11 +9,11 @@ import { Routes, Route } from "react-router-dom";
 import EventsPage from "./Pages/EventsPage";
 import Navbar from "./Components/Navbar";
 import LoginPage from "./Pages/LoginPage";
+import Dashboard from "./Components/Dashboard";
 
 function App() {
   return (
     <>
-    
     <Navbar />
       <Routes>
         <Route
@@ -31,6 +31,7 @@ function App() {
 
         <Route path="/EventsPage" element={<EventsPage />} />
         <Route path="/LoginPage" element={<LoginPage />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
       </Routes>
       <Footer />
     </>

@@ -48,6 +48,18 @@ const eventsData = [
         venue: "Seminar Hall 1",
         status: "upcoming"
     },
+    {
+        id: 5,
+        title: "Semantic AI",
+        desc: "Understanding the impact of Semantic AI.",
+        image: "/event1.jpg",
+        date: "13",
+        month: "Dec",
+        year: "2026",
+        time: "11:30 AM - 1:00 PM",
+        venue: "Seminar Hall 2",
+        status: "upcoming"
+    },
 ];
 
 export default eventsData;
