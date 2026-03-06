@@ -1,73 +1,73 @@
-.footer-wrapper{
-    overflow:hidden;
-    background:white;
+.footer-wrapper {
+  overflow: hidden;
+  background: white;
 }
 
-#Footer{
-    background-color: #d3f2f3;
-    padding: 0px 70px;
-    padding-top: 100px;
-    min-height: 50vh;
-    border-top-left-radius: 80% 120px;
-    border-top-right-radius: 80% 120px;
-    transform-origin: top center;
+#Footer {
+  background-color: #d3f2f3;
+  padding: 100px 70px 20px 70px;
+  min-height: 40vh;
+  border-top-left-radius: 50% 100px;
+  border-top-right-radius: 50% 100px;
+  transform-origin: bottom center;
+}
+.Footer-Top {
+  display: flex;
+  justify-content: space-between;
 }
 
-.Footer-Top{
-    display: flex;
-    justify-content: space-between;
+.Footer-Left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
-.Footer-Left{
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.Footer-Sense-logo img {
+  width: 150px;
+  height: 138px;
 }
 
-.Footer-Sense-logo img{
-    width: 150px;
-    height: 138px;
+.Footer-Sense-Name {
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.Footer-Sense-Name{
-    font-size: 20px;
-    font-weight: 600;
+.Footer-Right {
+  display: flex;
+  gap: 50px;
 }
 
-.Footer-Right{
-    display: flex;
-    gap: 50px;
+.Footer-About-Us-links,
+.Footer-Explore-links,
+.Footer-Support-links {
+  display: flex;
+  flex-direction: column;
+  padding-top: 15px;
 }
 
-.Footer-About-Us-links, .Footer-Explore-links, .Footer-Support-links{
-    display: flex;
-    flex-direction: column;
-    padding-top: 15px;
+.links a {
+  color: black;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 2;
 }
 
-.links a{
-    color: black;
-    text-decoration: none;
-    font-size: 13px;
-    line-height: 2;
+.line {
+  height: 1px;
+  background-color: black;
+  margin-top: 30px;
 }
 
-.line{
-    height: 1px;
-    background-color: black;
-    margin-top: 30px;
+.Footer-Media-Links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
 }
 
-.Footer-Media-Links{
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.Footer-Bottom{
-    display: flex;
-    justify-content: center;
-    font-size: 15px;
-    padding: 10px 0px;
+.Footer-Bottom {
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  padding: 10px 0px;
 }

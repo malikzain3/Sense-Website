@@ -1,0 +1,34 @@
+#Gallery1 {
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #ffffff 10%,
+    #d3f2f3 20%,
+    #d3f2f3 100%
+  );
+  padding: 50px 70px;
+}
+.Gallery-Images {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+/* Mobile Responsive Fix */
+@media (max-width: 900px) {
+  .Gallery-Images {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .Gallery-Images {
+    column-count: 1;
+  }
+  #Gallery {
+    padding: 50px 20px;
+  }
+}
+
+.Gallery-Heading span {
+  color: #f59e0b; /* Golden Touch */
+}

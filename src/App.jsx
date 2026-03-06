@@ -10,6 +10,7 @@ import EventsPage from "./Pages/EventsPage";
 import Navbar from "./Components/Navbar";
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Components/Dashboard";
+import GalleryPage from "./Pages/GalleryPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/EventsPage" element={<EventsPage />} />
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/GalleryPage" element={<GalleryPage />} />
       </Routes>
       <Footer />
     </>
