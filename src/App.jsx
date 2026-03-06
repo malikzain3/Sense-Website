@@ -11,6 +11,7 @@ import Navbar from "./Components/Navbar";
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Components/Dashboard";
 import GalleryPage from "./Pages/GalleryPage";
+import TeamPage from "./Pages/TeamPage";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/GalleryPage" element={<GalleryPage />} />
+        <Route path="/TeamPage" element={<TeamPage />} />
       </Routes>
       <Footer />
     </>

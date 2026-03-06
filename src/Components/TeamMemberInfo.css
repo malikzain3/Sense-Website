@@ -1,20 +1,61 @@
-#TeamMemberInfo{
-    width: 250px;
+/* --- Modern Member Card Base --- */
+#TeamMemberInfo {
+    width: 250px; /* Aapka purana size */
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 20px; /* Purana rounded look */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #eee;
+    margin-bottom: 20px;
 }
 
-.Team-Member-Image img{
-    border-radius: 20px;
-    width: 250px;
+#TeamMemberInfo:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.Team-Member-Name{
+/* Image Container */
+.Team-Member-Image img {
+    border-radius: 15px;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+/* Name & Designation */
+.Team-Member-Name {
     display: flex;
     justify-content: center;
     font-size: 18px;
     font-weight: 600;
+    color: #2d3436;
 }
 
-.Team-Member-Designation{
+.Team-Member-Designation {
     display: flex;
     justify-content: center;
+    font-size: 14px;
+    color: #636e72;
+}
+
+/* --- PRESIDENT STYLE (No Badge, Just Color & Line) --- */
+.member-card-wrapper.pres #TeamMemberInfo {
+    background: #fffcf5; /* Halka sa Gold tint */
+    border-bottom: 5px solid #f59e0b; /* Niche wali line */
+}
+
+.member-card-wrapper.pres .Team-Member-Name {
+    color: #f59e0b; /* Name color changed */
+}
+
+/* --- VICE PRESIDENT STYLE (No Badge, Just Color & Line) --- */
+.member-card-wrapper.vp #TeamMemberInfo {
+    background: #f0fbfc; /* Halka sa Teal tint */
+    border-bottom: 5px solid #1dbbc3; /* Niche wali line */
+}
+
+.member-card-wrapper.vp .Team-Member-Name {
+    color: #1dbbc3; /* Name color changed */
 }

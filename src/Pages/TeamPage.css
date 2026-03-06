@@ -1,0 +1,124 @@
+.team-page-wrapper {
+    padding-top: 120px;
+    background: #f8fbff;
+    min-height: 100vh;
+}
+
+.team-header-section {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.team-header-section h1 {
+    font-size: 50px;
+    font-weight: 800;
+    color: #2d3436;
+}
+
+.team-header-section h1 span { color: #f59e0b; }
+
+/* President Featured Style */
+.president-featured-area {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+    padding: 0 20px;
+}
+
+.president-card {
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    max-width: 900px;
+    border: 1px solid rgba(29, 187, 195, 0.2);
+}
+
+.pres-img-box {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.pres-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.leader-badge {
+    background: #f59e0b;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.pres-details h2 {
+    font-size: 36px;
+    margin: 15px 0 10px;
+    color: #2d3436;
+}
+
+.pres-details p {
+    color: #636e72;
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+/* Core Team Grid */
+.section-subheading {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+    color: #2d3436;
+    position: relative;
+}
+
+.team-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 5% 80px;
+}
+/* Page Level Styling */
+.section-title {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #2d3436;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.section-title span {
+    color: #f59e0b;
+}
+
+.section-divider-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+    width: 80%;
+    margin: 60px auto;
+}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .president-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .pres-img-box {
+        width: 180px;
+        height: 180px;
+    }
+    .team-header-section h1 { font-size: 35px; }
+}
