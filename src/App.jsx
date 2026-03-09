@@ -12,10 +12,12 @@ import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Components/Dashboard";
 import GalleryPage from "./Pages/GalleryPage";
 import TeamPage from "./Pages/TeamPage";
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
     <>
+    <Toaster position="top-right" reverseOrder={false} />
     <Navbar />
       <Routes>
         <Route

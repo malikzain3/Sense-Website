@@ -1,0 +1,20 @@
+/* Toast ka main dabba */
+.go3958317564 { 
+  background: #333 !important;
+  color: #fff !important;
+  border-radius: 12px !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+  padding: 12px 20px !important;
+}
+
+/* Success icon ka color */
+.go2445756727 {
+  border-color: #1dbbc3 !important; /* Tera theme color */
+}
+
+/* Error icon ka color */
+.go3963613292 {
+  border-color: #ff4757 !important;
+}

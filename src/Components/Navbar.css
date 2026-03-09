@@ -73,3 +73,40 @@
 .Join-us:hover{
     background-color: #d3f2f3;
 }
+/* --- Admin Specific Styles --- */
+
+.Admin-Controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.Profile-Icon {
+    font-size: 24px;
+    color: #1dbbc3;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.Logout-Btn {
+    font-weight: 600;
+    font-size: 13px;
+    color: white;
+    background-color: #ff4757; /* Red color for logout */
+    border: none;
+    padding: 6px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.Logout-Btn:hover {
+    background-color: #ff6b81;
+    transform: translateY(-2px);
+}
+
+/* Dashboard Link in Mid Nav */
+.Nav-mid ul li a {
+    transition: all 0.3s ease;
+}
