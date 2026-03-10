@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect } from "react";
 import About from "./Components/About";
 import Events from "./Components/Events";
 import Gallery from "./Components/Gallery";
@@ -13,8 +14,27 @@ import Dashboard from "./Components/Dashboard";
 import GalleryPage from "./Pages/GalleryPage";
 import TeamPage from "./Pages/TeamPage";
 import { Toaster } from 'react-hot-toast';
+import Lenis from "lenis";
 
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,  
+      smoothTouch: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
   return (
     <>
     <Toaster position="top-right" reverseOrder={false} />
