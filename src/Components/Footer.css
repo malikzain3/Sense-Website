@@ -15,8 +15,8 @@
   background-color: #d3f2f3;
   padding: 100px 70px 20px 70px;
 
-  border-top-left-radius: 50% 100px;
-  border-top-right-radius: 50% 100px;
+  border-top-left-radius: 100% 100px;
+  border-top-right-radius: 100% 100px;
 
   transform-origin: bottom center;
   will-change: transform;
