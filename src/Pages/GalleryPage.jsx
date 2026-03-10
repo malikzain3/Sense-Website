@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import "./GalleryPage.css"
 import galleryData from "../galleryData.js"
+import "./GalleryPage.css"
 
 const GalleryPage = () => {
   useEffect(() => {

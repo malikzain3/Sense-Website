@@ -2,7 +2,10 @@
     background-color: #d3f2f3;
     padding: 50px 0px;
 }
-
+.Gallery-Track {
+  display: flex;
+  will-change: transform; /* Performance boost for motion */
+}
 .Gallery-Heading {
     font-size: 50px;
     font-weight: 600;
@@ -43,18 +46,41 @@
 .Gallery-Btn {
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 .Gallery-Btn button {
-    border: 2px solid black;
-    padding: 10px 20px;
-    border-radius: 10px;
+   background-color: #d3f2f3;
+    border: 1.5px solid #1dbbc3; /* Soft border matching the hover color */
+    color: #0f4c4e; /* Darker version for better readability */
+    
+    /* Spacing & Size */
+    padding: 12px 32px;
+    border-radius: 50px; /* Pill shape is more modern/professional */
+    
+    /* Typography */
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    
+    /* Interaction */
     cursor: pointer;
-    background-color: #fff;
-    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 15px rgba(29, 187, 195, 0.15);
 }
 
 .Gallery-Btn button:hover {
     background-color: #1dbbc3;
+    color: white;
+    border-color: #1dbbc3;
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 25px rgba(29, 187, 195, 0.3);
 }   
+
+.Gallery-Btn button:active {
+    transform: translateY(-1px); 
+}

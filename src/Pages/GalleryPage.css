@@ -1,34 +1,85 @@
+/* Main Container */
 #Gallery1 {
-  background: linear-gradient(
-    180deg,
-    #ffffff 0%,
-    #ffffff 10%,
-    #d3f2f3 20%,
-    #d3f2f3 100%
-  );
-  padding: 50px 70px;
-}
-.Gallery-Images {
-  column-count: 3;
-  column-gap: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #f0fdfa 50%, #d3f2f3 100%);
+  padding: 80px 5%; /* Side gaps zyada rakhein premium feel ke liye */
+  transition: all 0.3s ease;
 }
 
-/* Mobile Responsive Fix */
-@media (max-width: 900px) {
-  .Gallery-Images {
-    column-count: 2;
-  }
-}
-
-@media (max-width: 600px) {
-  .Gallery-Images {
-    column-count: 1;
-  }
-  #Gallery {
-    padding: 50px 20px;
-  }
+/* Heading Styling */
+.Gallery-Heading {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #1e293b;
+  letter-spacing: -1px;
 }
 
 .Gallery-Heading span {
-  color: #f59e0b; /* Golden Touch */
+  color: #f59e0b;
+  position: relative;
+}
+
+/* Modern Masonry Layout */
+.Gallery-Images {
+  column-count: 3;
+  column-gap: 20px;
+  width: 100%;
+}
+
+/* Individual Image Styling */
+.Gallery-Images img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px; /* Space between rows */
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  cursor: zoom-in;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effects */
+.Gallery-Images img:hover {
+  transform: scale(1.03) translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  z-index: 10;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1100px) {
+  .Gallery-Images {
+    column-count: 2;
+  }
+  #Gallery1 {
+    padding: 60px 5%;
+  }
+}
+
+@media (max-width: 650px) {
+  .Gallery-Images {
+    column-count: 1;
+  }
+  .Gallery-Heading {
+    font-size: 2rem;
+  }
+  #Gallery1 {
+    padding: 40px 20px;
+  }
+}
+
+/* Smooth Animation when page loads */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.Gallery-Images img {
+  animation: fadeInUp 0.6s ease backwards;
 }

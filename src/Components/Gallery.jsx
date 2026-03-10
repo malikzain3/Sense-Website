@@ -1,4 +1,5 @@
-import { React, useRef, useState, useEffect, useCallback } from 'react'
+import React , { useRef, useState, useEffect, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import "./Gallery.css"
 import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 import img from "../assets/Pic.jpg"
@@ -8,6 +9,7 @@ const images = [
 ];
 
 const Gallery = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
 
@@ -175,7 +177,7 @@ const Gallery = () => {
       </div>
 
       <div className="Gallery-Btn">
-        <button>VIEW MORE</button>
+        <button onClick={() => navigate('/GalleryPage')}>VIEW MORE</button>
       </div>
     </div>
   )
