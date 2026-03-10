@@ -4,37 +4,53 @@
 }
 
 #Footer {
+  position: relative;
+  min-height: 40vh;
+}
+
+/* Animated layer (safe to scale) */
+.footer-bg {
+  position: absolute;
+  inset: 0;
   background-color: #d3f2f3;
   padding: 100px 70px 20px 70px;
-  min-height: 40vh;
+
   border-top-left-radius: 50% 100px;
   border-top-right-radius: 50% 100px;
+
   transform-origin: bottom center;
+  will-change: transform;
+  z-index: 0;
 }
+
+/* Content stays normal (not scaled) */
+.footer-content {
+  position: relative;
+  z-index: 1;
+  padding: 100px 70px 20px 70px;
+}
+
 .Footer-Top {
   display: flex;
   justify-content: space-between;
-}
-
-.Footer-Left {
-  display: flex;
   align-items: center;
-  gap: 15px;
-}
-
-.Footer-Sense-logo img {
-  width: 150px;
-  height: 138px;
-}
-
-.Footer-Sense-Name {
-  font-size: 20px;
-  font-weight: 600;
 }
 
 .Footer-Right {
   display: flex;
   gap: 50px;
+}
+
+.Footer-Sense-logo img {
+  width: 150px;
+  height: 150px; /* make it square so it can't become oval by sizing */
+  object-fit: contain;
+  display: block;
+}
+
+.Footer-Sense-Name {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .Footer-About-Us-links,
@@ -55,13 +71,6 @@
 .line {
   height: 1px;
   background-color: black;
-  margin-top: 30px;
-}
-
-.Footer-Media-Links {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
   margin-top: 30px;
 }
 
