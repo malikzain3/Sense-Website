@@ -3,7 +3,7 @@ import eventsData from "../eventsData.js";
 import galleryData from "../galleryData.js";
 import teamData from "../teamData.js";
 import "./Dashboard.css";
-import toast from "react-hot-toast";
+import toast from "react-hot-toast"
 
 const Dashboard = () => {
 

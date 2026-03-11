@@ -177,7 +177,7 @@ const Gallery = () => {
       </div>
 
       <div className="Gallery-Btn">
-        <button onClick={() => navigate('/GalleryPage')}>VIEW MORE</button>
+        <button onClick={() => { navigate('/GalleryPage'); }}>VIEW MORE</button>
       </div>
     </div>
   )

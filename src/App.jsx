@@ -16,6 +16,7 @@ import TeamPage from "./Pages/TeamPage";
 import { Toaster } from 'react-hot-toast';
 import Lenis from "lenis";
 import ContactPage from "./Pages/ContactPage";
+import NotFound from "./Pages/NotFound.jsx";
 
 function App() {
   useEffect(() => {
@@ -60,6 +61,7 @@ function App() {
         <Route path="/GalleryPage" element={<GalleryPage />} />
         <Route path="/TeamPage" element={<TeamPage />} />
         <Route path="/ContactPage" element={<ContactPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>
