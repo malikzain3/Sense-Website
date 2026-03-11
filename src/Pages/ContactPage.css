@@ -1,0 +1,218 @@
+/* ====== General Page Styling ====== */
+.contact-page {
+  padding-bottom: 60px;
+}
+
+.heading-container {
+  text-align: center;
+  padding-top: 100px;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: #000000;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.title-highlight {
+  color: #1dbbc3;
+}
+
+.contact-subtitle {
+  color: #666;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+/* ====== Layout Container ====== */
+.contact-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* ====== Left Column: Info & Map ====== */
+.contact-info-section {
+  flex: 1;
+  background-color: #f9fbfb;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contact-info-section h3 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 24px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  gap: 15px;
+}
+
+/* Updated Info Icon for React Icons */
+.info-icon {
+  font-size: 20px;
+  color: #1dbbc3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.info-item strong {
+  display: block;
+  font-size: 16px;
+  color: #363636;
+  margin-bottom: 6px;
+}
+
+.info-item p {
+  margin: 0;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.info-subtext {
+  font-size: 13px;
+  color: #888;
+}
+
+/* --- Social Media Vertical List --- */
+.social-media-section {
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.social-media-section strong {
+  display: block;
+  font-size: 16px;
+  color: #363636;
+  margin-bottom: 12px;
+}
+
+.social-links-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #1dbbc3;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  width: fit-content; /* Prevents button from stretching full width */
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.social-icon {
+  font-size: 18px;
+}
+
+.social-link:hover {
+  background-color: #179ea5;
+  transform: translateX(4px); /* Nice subtle slide to the right on hover */
+}
+
+/* ====== Right Column: Form ====== */
+.contact-form-section {
+  flex: 1;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #1dbbc3;
+  box-shadow: 0 0 0 3px rgba(22, 140, 146, 0.15);
+}
+
+.submit-btn {
+  background-color: #1dbbc3;
+  color: #ffffff;
+  border: none;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.15s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color: #179ea5;
+  transform: translateY(-2px);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* ====== Responsive Formatting ====== */
+@media (max-width: 850px) {
+  .contact-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 0 16px;
+  }
+  
+  .page-title {
+    font-size: 36px;
+  }
+}

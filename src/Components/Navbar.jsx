@@ -38,7 +38,9 @@ const Navbar = () => {
           <li>
             <Link to="/GalleryPage">GALLERY</Link>
           </li>
-          <li>CONTACT US</li>
+          <li>
+            <Link to="/ContactPage">CONTACT US</Link>
+          </li>
           {/* Logged in user ke liye Dashboard link */}
           {isLoggedIn && (
             <li>

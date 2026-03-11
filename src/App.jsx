@@ -15,6 +15,7 @@ import GalleryPage from "./Pages/GalleryPage";
 import TeamPage from "./Pages/TeamPage";
 import { Toaster } from 'react-hot-toast';
 import Lenis from "lenis";
+import ContactPage from "./Pages/ContactPage";
 
 function App() {
   useEffect(() => {
@@ -58,6 +59,7 @@ function App() {
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/GalleryPage" element={<GalleryPage />} />
         <Route path="/TeamPage" element={<TeamPage />} />
+        <Route path="/ContactPage" element={<ContactPage />} />
       </Routes>
       <Footer />
     </>
