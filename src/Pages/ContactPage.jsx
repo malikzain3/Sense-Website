@@ -11,7 +11,6 @@ const ContactPage = () => {
     message: "",
   });
   
-  // Added a state to show a loading message on the button
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {

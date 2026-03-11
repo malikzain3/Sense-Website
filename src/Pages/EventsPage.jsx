@@ -1,8 +1,7 @@
 import React from "react";
 import EventCard from "../Components/EventCard";
 import eventsData from "../eventsData.js";
-import "./EventsPage.css"; // CSS file import karo
-
+import "./EventsPage.css"; 
 const EventsPage = () => {
   const allEvents = [...eventsData].reverse();
 
