@@ -1,10 +1,25 @@
-import React from 'react'
+import {React, useState, useEffect} from 'react'
 import "./About.css"
 import senseLogoBlack from "../assets/SENSE-logo-blacck.png"
-import Eventimage1 from "../assets/AboutImage2.jpeg"
-import Eventimage2 from "../assets/AboutImage1.jpeg"
+import Eventimage1 from "../assets/Pic.jpg"
+
+const images = [
+  Eventimage1,
+  Eventimage1,
+  Eventimage1,
+];
 
 const About = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setCurrentIndex((prevIndex) =>
+                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+            );
+        }, 3000);
+        return () => clearInterval(slideInterval);
+    }, []);
     return (
         <div id='About'>
             <div className="About-Heading">
@@ -26,11 +41,29 @@ const About = () => {
 
                         Our mission is to create opportunities for students to gain technical expertise, problem-solving skills, and teamwork experience by engaging in practical events, mentorship programs, and technical discussions. And we are not ashamed to confess we made the society just for the sake of co events, you know poundi etc.
 
-                        We believe in learning by doing and building a strong community that supports innovation, collaboration, and continuous growth.                    
+                        We believe in learning by doing and building a strong community that supports innovation, collaboration, and continuous growth.
                     </div>
-                    <div className="About-right-images">
-                        <img src={Eventimage1} />
-                        <img src={Eventimage2} />
+
+                    <div className="slider-container">
+                        {images.map((img, index) => (
+                            <div
+                                key={index}
+                                className={`slide ${index === currentIndex ? 'active' : ''}`}
+                            >
+                                {index === currentIndex && (
+                                    <img src={img} alt={`Slide ${index + 1}`} className="slider-image" />
+                                )}
+                            </div>
+                        ))}
+                        <div className="dots-container">
+                            {images.map((_, index) => (
+                                <span
+                                    key={index}
+                                    className={`dot ${index === currentIndex ? 'active-dot' : ''}`}
+                                    onClick={() => setCurrentIndex(index)}
+                                ></span>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
