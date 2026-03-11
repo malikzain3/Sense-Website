@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPhoneAlt, FaEnvelope, FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
+import toast from "react-hot-toast";
 import "./ContactPage.css";
 
 const ContactPage = () => {
@@ -41,14 +42,14 @@ const ContactPage = () => {
       const result = await response.json();
 
       if (result.success) {
-        alert("Thanks for reaching out! A SENSE team member will get back to you soon.");
+        toast.success("Thanks for reaching out! A SENSE team member will get back to you soon.");
         setFormData({ name: "", email: "", subject: "", message: "" }); 
       } else {
-        alert("Oops! Something went wrong. Please try again.");
+        toast.error("Oops! Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Form submission error:", error);
-      alert("Network error. Please try again later.");
+      toast.error("Network error. Please try again later.");
     } finally {
       setIsSubmitting(false); 
     }

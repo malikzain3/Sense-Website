@@ -54,7 +54,7 @@ const EventCard = ({
                     </div>
 
                     {status === "upcoming" && (
-                        <button className="RSVP-Btn">RSVP</button>
+                        <button className="RSVP-Btn">Register</button>
                     )}
 
                 </div>
