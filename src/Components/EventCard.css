@@ -1,48 +1,73 @@
-#Event-Card{
+#Event-Card {
     width: 381px;
     border-radius: 10px;
-    /* background-color: #f5ead7; */
     background-color: #d3f2f3;
     box-shadow: 5px 5px 10px rgb(134, 134, 134);
     margin-right: 30px;
     transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
 }
 
-#Event-Card:hover{
+#Event-Card:hover {
     transform: scale(1.02);
 }
 
-.Event-Image img{
-    width: 381px;
-    border-radius: 8px;
+.Event-Image {
+    position: relative;
 }
 
-.Event-Content{
+.Event-Image img {
+    width: 381px;
+    border-radius: 8px 8px 0 0;
+    display: block;
+}
+
+.Event-Category-Badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: #1dbbc3;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    box-shadow: 0 2px 8px rgba(29, 187, 195, 0.4);
+}
+
+/* ── Content ── */
+.Event-Content {
     padding: 15px 20px;
     font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
-.Event-Title{
+.Event-Title {
     font-size: 20px;
     font-weight: 600;
 }
 
-.Event-Desc{
+.Event-Desc {
     font-size: 15px;
 }
 
-.Event-Info{
+.Event-Info {
     display: flex;
     align-items: center;
     margin-top: 20px;
 }
 
-.Event-Date{
+.Event-Date {
     font-size: 60px;
     padding-bottom: 8px;
 }
 
-.Event-Month-Year{
+.Event-Month-Year {
     margin-left: 7px;
     line-height: 1.3;
     font-size: 18px;
@@ -50,46 +75,102 @@
     padding-bottom: 17px;
 }
 
-.Event-Time-Venue{
+.Event-Time-Venue {
     margin-left: 25px;
 }
 
-.Event-Time-Venue div{
+.Event-Time-Venue div {
     display: flex;
+    align-items: center;
     padding-bottom: 10px;
 }
 
-.Event-Time-Venue img{
+.Event-Time-Venue img {
     margin-right: 6px;
     width: 22px;
 }
 
-.Event-Status{
+/* ── Countdown Timer ── */
+.Event-Countdown {
+    background-color: rgba(29, 187, 195, 0.12);
+    border: 1px solid rgba(29, 187, 195, 0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.countdown-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #0f4c4e;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.countdown-blocks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 38px;
+}
+
+.countdown-unit span {
+    font-size: 22px;
+    font-weight: 800;
+    color: #1dbbc3;
+    line-height: 1;
+}
+
+.countdown-unit small {
+    font-size: 9px;
+    font-weight: 600;
+    color: #0f4c4e;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+.countdown-sep {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1dbbc3;
+    padding-bottom: 12px;
+}
+
+/* ── Status & RSVP ── */
+.Event-Status {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-top: auto;
+    padding-top: 10px;
 }
 
-.Status{
+.Status {
     font-size: 15px;
+    font-weight: 600;
 }
 
-.RSVP-Btn{
+.RSVP-Btn {
     background-color: #d3f2f3;
-    border: 1.5px solid #1dbbc3; /* Soft border matching the hover color */
-    color: #0f4c4e; /* Darker version for better readability */
-    
-    /* Spacing & Size */
+    border: 1.5px solid #1dbbc3;
+    color: #0f4c4e;
     padding: 6px 20px;
-    border-radius: 50px; /* Pill shape is more modern/professional */
-    
-    /* Typography */
+    border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* Interaction */
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -97,14 +178,14 @@
     box-shadow: 0 4px 15px rgba(29, 187, 195, 0.15);
 }
 
-.RSVP-Btn:hover{
+.RSVP-Btn:hover {
     background-color: #1dbbc3;
     color: white;
     border-color: #1dbbc3;
-    transform: translateY(-3px); 
+    transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(29, 187, 195, 0.3);
 }
 
 .RSVP-Btn:active {
-    transform: translateY(-1px); 
+    transform: translateY(-1px);
 }
