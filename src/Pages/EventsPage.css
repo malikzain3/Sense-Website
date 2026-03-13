@@ -1,5 +1,5 @@
 .events-container {
-    padding-top: 130px; 
+    padding-top: 130px;
     padding-bottom: 50px;
     background-color: #f9fafb;
     min-height: 100vh;
@@ -10,7 +10,7 @@
     text-align: center;
     font-size: 3rem;
     font-weight: 900;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -19,14 +19,61 @@
     color: #1dbbc3;
 }
 
+.events-filter-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 50px;
+    padding: 0 20px;
+}
+
+.filter-btn {
+    background-color: #fff;
+    border: 1.5px solid #1dbbc3;
+    color: #0f4c4e;
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(29, 187, 195, 0.1);
+}
+
+.filter-btn:hover {
+    background-color: #d3f2f3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(29, 187, 195, 0.2);
+}
+
+.filter-btn.active {
+    background-color: #1dbbc3;
+    color: #fff;
+    border-color: #1dbbc3;
+    box-shadow: 0 6px 20px rgba(29, 187, 195, 0.35);
+    transform: translateY(-2px);
+}
+
+/* ── No Events ── */
+.no-events {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin-top: 60px;
+}
+
+/* ── Grid ── */
 .events-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 40px;
-    align-items: stretch; 
+    align-items: stretch;
 }
 
 .events-grid > div {
@@ -40,7 +87,6 @@
     }
 }
 
-/* Mobile: 1 Card */
 @media (max-width: 700px) {
     .events-grid {
         grid-template-columns: 1fr;
