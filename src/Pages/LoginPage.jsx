@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; // useState add kiya
+import React, { useEffect, useState } from "react"; 
 
 import "./LoginPage.css";
 import senseLogoBlack from "../assets/SENSE-logo-blacck.png";

@@ -1,10 +1,10 @@
 import React from 'react';
 import EventCard from './EventCard';
-import eventsData from '../eventsData.js'; // Path check kar lena bache
+import eventsData from '../eventsData.js'; 
 import "./Events.css";
 
 const Events = () => {
-  // Logic: Sab se naye events pehle, aur sirf 3 cards
+  
   const homeEvents = [...eventsData].reverse().slice(0, 3);
 
   return (
@@ -15,7 +15,7 @@ const Events = () => {
         {homeEvents.map((item) => (
           <EventCard 
             key={item.id} 
-            {...item} // Isse saara data (title, date, month, etc.) khud chala jayega
+            {...item} 
           />
         ))}
       </div>

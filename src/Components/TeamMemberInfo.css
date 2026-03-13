@@ -1,21 +1,49 @@
-/* --- Modern Member Card Base --- */
+/* --- Desktop Styles (Wahi hain jo aapne diye) --- */
 #TeamMemberInfo {
-    width: 250px; /* Aapka purana size */
+    width: 250px;
     background: #ffffff;
     padding: 15px;
-    border-radius: 20px; /* Purana rounded look */
+    border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     border: 1px solid #eee;
-    margin-bottom: 20px;
+    margin: 10px; /* Thora margin diya taake cards chipke na */
+    display: inline-block; /* Agar aap flex use nahi kar rahe to */
 }
 
+/* --- Responsive Fix (Mobile & Tablet) --- */
+
+@media (max-width: 600px) {
+    #TeamMemberInfo {
+        width: 90%; /* Mobile par card ki width 90% hogi */
+        max-width: 300px; /* Lekin 300px se bada nahi hoga taake ajeeb na lage */
+        margin: 15px auto; /* Center karne ke liye */
+        display: block; /* Vertical stack ke liye */
+    }
+
+    .Team-Member-Image img {
+        height: 280px; /* Mobile par image thori bari dikhe to achi lagti hai */
+    }
+
+    .Team-Member-Name {
+        font-size: 20px; /* Mobile par readability behtar karne ke liye */
+    }
+}
+
+/* Agar aap chahte hain ke tablet par ek line mein 2 cards aayen */
+@media (min-width: 601px) and (max-width: 1024px) {
+    #TeamMemberInfo {
+        width: 220px; /* Tablet par thora chota size */
+        margin: 10px;
+    }
+}
+
+/* --- Baaki Styles (Wahi same rahenge) --- */
 #TeamMemberInfo:hover {
     transform: translateY(-8px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-/* Image Container */
 .Team-Member-Image img {
     border-radius: 15px;
     width: 100%;
@@ -24,7 +52,6 @@
     margin-bottom: 15px;
 }
 
-/* Name & Designation */
 .Team-Member-Name {
     display: flex;
     justify-content: center;
@@ -40,22 +67,21 @@
     color: #636e72;
 }
 
-/* --- PRESIDENT STYLE (No Badge, Just Color & Line) --- */
+/* President & VP Styles */
 .member-card-wrapper.pres #TeamMemberInfo {
-    background: #fffcf5; /* Halka sa Gold tint */
-    border-bottom: 5px solid #f59e0b; /* Niche wali line */
+    background: #fffcf5;
+    border-bottom: 5px solid #f59e0b;
 }
 
 .member-card-wrapper.pres .Team-Member-Name {
-    color: #f59e0b; /* Name color changed */
+    color: #f59e0b;
 }
 
-/* --- VICE PRESIDENT STYLE (No Badge, Just Color & Line) --- */
 .member-card-wrapper.vp #TeamMemberInfo {
-    background: #f0fbfc; /* Halka sa Teal tint */
-    border-bottom: 5px solid #1dbbc3; /* Niche wali line */
+    background: #f0fbfc;
+    border-bottom: 5px solid #1dbbc3;
 }
 
 .member-card-wrapper.vp .Team-Member-Name {
-    color: #1dbbc3; /* Name color changed */
+    color: #1dbbc3;
 }

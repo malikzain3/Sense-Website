@@ -84,3 +84,50 @@
 .Gallery-Btn button:active {
     transform: translateY(-1px); 
 }
+
+/* --- Added Media Queries --- */
+
+@media (max-width: 1024px) {
+    .Gallery-Heading {
+        font-size: 40px;
+        padding: 0 40px;
+    }
+    .Gallery-Track {
+        padding: 0 40px;
+        gap: 25px;
+    }
+    .Gallery-Card {
+        min-width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    #Gallery {
+        padding: 40px 0;
+    }
+    .Gallery-Heading {
+        font-size: 30px;
+        padding: 0 20px;
+        text-align: center;
+    }
+    .Gallery-Track {
+        padding: 0 20px;
+        gap: 15px;
+    }
+    .Gallery-Card {
+        min-width: 260px;
+        height: 260px;
+    }
+    .Gallery-Btn button {
+        padding: 10px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Gallery-Card {
+        min-width: 220px;
+        height: 220px;
+    }
+}

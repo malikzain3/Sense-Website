@@ -1,25 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navbar.css";
 import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const location = useLocation();
-  console.log(location.pathname);
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isLoggedIn = !!localStorage.getItem("adminToken");
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
     toast.success("Logged out successfully!");
-    setTimeout(() => {
-    window.location.href = "/"; 
-  }, 500);
+    setTimeout(() => { window.location.href = "/"; }, 500);
   };
 
   return (
-    <div id="Navbar">
+    <nav id="Navbar" className={isMenuOpen ? "open" : ""}>
       <div className="Nav-left">
         <div className="LOGO">
           <img src={senseLogo} alt="Logo" />
@@ -27,47 +23,30 @@ const Navbar = () => {
         <div className="Sense-Name">SENSE-IIUI</div>
       </div>
 
-      <div className="Nav-mid">
-        <ul>
-          <li>
-            <Link to="/">HOME</Link>
-          </li>
-          <li>
-            <Link to="/EventsPage">EVENTS</Link>
-          </li>
-          <li>
-            <Link to="/GalleryPage">GALLERY</Link>
-          </li>
-          <li>
-            <Link to="/ContactPage">CONTACT US</Link>
-          </li>
-          {/* Logged in user ke liye Dashboard link */}
-          {isLoggedIn && (
-            <li>
-              <Link to="/Dashboard">DASHBOARD</Link>
-            </li>
-          )}
-        </ul>
+      <div className="Hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
       </div>
 
-      <div className="Nav-right">
-        {isLoggedIn ? (
-          <div className="Admin-Controls">
-            <div className="Profile-Icon" title="Admin Active">
-              {/* FontAwesome icon agar install hai */}
-              <i className="fa fa-user-circle"></i>
-            </div>
-            <button className="Logout-Btn" onClick={handleLogout}>
-              Logout
-            </button>
-          </div>
-        ) : (
-          <div className="Join-us">
-            <Link to="/LoginPage">Login</Link>
-          </div>
-        )}
+      <div className={`Nav-wrapper ${isMenuOpen ? "active" : ""}`}>
+        <ul className="Nav-links">
+          <li><Link to="/" onClick={() => setIsMenuOpen(false)}>HOME</Link></li>
+          <li><Link to="/EventsPage" onClick={() => setIsMenuOpen(false)}>EVENTS</Link></li>
+          <li><Link to="/GalleryPage" onClick={() => setIsMenuOpen(false)}>GALLERY</Link></li>
+          <li><Link to="/ContactPage" onClick={() => setIsMenuOpen(false)}>CONTACT US</Link></li>
+          {isLoggedIn && <li><Link to="/Dashboard" onClick={() => setIsMenuOpen(false)}>DASHBOARD</Link></li>}
+        </ul>
+
+        <div className="Nav-right">
+          {isLoggedIn ? (
+            <button className="Logout-Btn" onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link className="Join-us" to="/LoginPage" onClick={() => setIsMenuOpen(false)}>Login</Link>
+          )}
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

@@ -76,12 +76,12 @@
 
 .RSVP-Btn{
     background-color: #d3f2f3;
-    border: 1.5px solid #1dbbc3; /* Soft border matching the hover color */
-    color: #0f4c4e; /* Darker version for better readability */
+    border: 1.5px solid #1dbbc3; 
+    color: #0f4c4e; 
     
     /* Spacing & Size */
     padding: 6px 20px;
-    border-radius: 50px; /* Pill shape is more modern/professional */
+    border-radius: 50px; 
     
     /* Typography */
     font-size: 14px;
@@ -107,4 +107,49 @@
 
 .RSVP-Btn:active {
     transform: translateY(-1px); 
+}
+
+/* --- Responsive Adjustments --- */
+
+@media (max-width: 768px) {
+    #Event-Card {
+        width: 100%; 
+        max-width: 400px; 
+        margin-right: 0;
+        margin-bottom: 25px; 
+    }
+
+    .Event-Image img {
+        width: 100%; 
+        height: auto;
+    }
+
+    .Event-Info {
+        flex-wrap: wrap; 
+    }
+
+    .Event-Date {
+        font-size: 45px; 
+    }
+
+    .Event-Time-Venue {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Event-Title {
+        font-size: 18px;
+    }
+    
+    .Event-Status {
+        flex-direction: column; 
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .RSVP-Btn {
+        width: 100%; 
+        text-align: center;
+    }
 }

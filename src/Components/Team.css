@@ -63,3 +63,37 @@
 .More-Team-Button button:active {
     transform: translateY(-1px); 
 }
+/* Tablet aur Mobile ke liye adjustments */
+@media (max-width: 768px) {
+    #Team {
+        padding: 40px 20px; /* Padding kam kar di taaki side se space bache */
+    }
+
+    .Team-Heading {
+        font-size: 32px; /* Heading thodi choti kar di */
+    }
+
+    .Team-Text {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .Team-Member {
+        flex-direction: column; /* Items ek ke neeche ek aayenge */
+        align-items: center;    /* Center align karne ke liye */
+        gap: 30px;              /* Gap thoda kam kar diya */
+    }
+}
+
+/* Extra small devices (chote phones) ke liye */
+@media (max-width: 480px) {
+    .Team-Heading {
+        font-size: 28px;
+    }
+    
+    .More-Team-Button Button {
+        padding: 10px 24px; /* Button ka size thoda handle kiya */
+        width: 100%;        /* Mobile par full width button aksar acha lagta hai */
+        max-width: 250px;
+    }
+}

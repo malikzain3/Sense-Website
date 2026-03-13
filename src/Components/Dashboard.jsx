@@ -42,10 +42,14 @@ const Dashboard = () => {
     rank: "3",
   });
 
-  useEffect(() => {
-    document.body.style.overflow =
-      showForm || showTeamForm ? "hidden" : "unset";
-  }, [showForm, showTeamForm]);
+ 
+useEffect(() => {
+  if (showForm || showTeamForm) {
+    document.body.classList.add("modal-open");
+  } else {
+    document.body.classList.remove("modal-open");
+  }
+}, [showForm, showTeamForm]);
 
   // --- Events & Gallery Handlers ---
   const handleImageUpload = (e) => {
@@ -152,7 +156,7 @@ const Dashboard = () => {
               </div>
               
               <div className="dash-card-content">
-                {/* --- Yahan extra info add ki hai --- */}
+                
                 <div className="card-date-badge">{ev.date} {ev.month} {ev.year}</div>
                 <h3>{ev.title}</h3>
                 <p className="card-desc">{ev.desc}</p>
@@ -185,7 +189,7 @@ const Dashboard = () => {
           </h1>
           <label className="add-main-btn">
             + Upload Photo
-            {/* Yahan humne function ka naam likh diya taake error khatam ho jaye */}
+            
             <input
               type="file"
               accept="image/*"
@@ -201,7 +205,7 @@ const Dashboard = () => {
               <img src={item.img} alt="Gallery" />
 
               <div className="gallery-controls-overlay">
-                {/* 🔄 CHANGE PHOTO LOGIC */}
+                
                 <label className="control-btn edit-icon">
                   🔄
                   <input
@@ -354,7 +358,7 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Image upload area same rahega */}
+              
               <div className="form-group">
                 <label>Event Image</label>
                 <div className="professional-upload-area" onClick={() => document.getElementById("ev-file").click()}>

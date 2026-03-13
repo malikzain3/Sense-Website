@@ -80,3 +80,62 @@
   font-size: 15px;
   padding: 10px 0px;
 }
+
+/* --- Added Media Queries for Footer --- */
+
+@media (max-width: 1024px) {
+    .footer-bg, .footer-content {
+        padding: 80px 40px 20px 40px;
+    }
+    
+    .Footer-Right {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .Footer-Top {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .Footer-Right {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .footer-bg {
+        border-top-left-radius: 50% 50px; /* Curve ko mobile ke liye adjust kiya */
+        border-top-right-radius: 50% 50px;
+    }
+
+    .footer-content {
+        padding: 60px 20px 20px 20px;
+    }
+
+    .Footer-Sense-logo img {
+        margin: 0 auto;
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Footer-Right {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .Footer-About-Us-links,
+    .Footer-Explore-links,
+    .Footer-Support-links {
+        padding-top: 5px;
+    }
+
+    .Footer-Bottom {
+        font-size: 12px;
+        text-align: center;
+    }
+}

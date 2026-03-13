@@ -195,20 +195,60 @@
 .submit-btn:active {
   transform: translateY(0);
 }
-
 /* ====== Responsive Formatting ====== */
+
 @media (max-width: 850px) {
-  .contact-container {
-    flex-direction: column;
-  }
+    /* Container ko flex-direction: column dene se info aur form upar niche ho jayenge */
+    .contact-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px; /* Dono blocks ke darmayan fasla */
+        padding: 0 20px; /* Screen ke kinaro se padding di taake dabba chipke na */
+        width: 100%;
+        max-width: 100%; /* Horizontal overflow khatam karne ke liye */
+        box-sizing: border-box; /* Padding ko width ke andar rakhne ke liye */
+    }
+
+    .contact-info-section, 
+    .contact-form-section {
+        width: 100% !important; /* Width ko 100% kiya taake column mein fit aayein */
+        flex: none; /* Flex-grow khatam kiya taake right side pe push na ho */
+        box-sizing: border-box; /* Sab se zarori: padding width ke bahar nahi jayegi */
+        margin: 0; /* Extra margins ko reset kiya */
+        padding: 25px; /* Dono dabbo ke andar ki padding barabar rakhi */
+    }
+
+    .page-title {
+        font-size: 34px;
+        text-align: center;
+    }
+
+    /* Form inputs ki width ko sakhti se control kiya */
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+        box-sizing: border-box; /* Input ko dabba se bahar nikalne se rokega */
+    }
+
+    /* Social links ko mobile pe center kiya aur full width di */
+    .social-link {
+        width: 100%;
+        justify-content: center;
+        box-sizing: border-box;
+    }
 }
 
 @media (max-width: 480px) {
-  .contact-container {
-    padding: 0 16px;
-  }
-  
-  .page-title {
-    font-size: 36px;
-  }
+    .contact-container {
+        padding: 0 15px; /* Choti screen pe thori kam side padding */
+    }
+    
+    .page-title {
+        font-size: 28px;
+    }
+
+    .contact-info-section, 
+    .contact-form-section {
+        padding: 20px; /* Card ke andar ki padding thori kam choti screen ke liye */
+    }
 }

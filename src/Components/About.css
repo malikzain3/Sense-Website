@@ -1,3 +1,4 @@
+
 #About{
     padding: 50px 70px;
     background-color: #d3f2f3;
@@ -90,4 +91,54 @@
 
 .active-dot {
   background-color: #d3f2f3;
+}
+
+
+
+  /* Responsive Design */
+@media (max-width: 1024px) {
+    #About {
+        padding: 40px 30px;
+    }
+
+    .About-Content {
+        flex-direction: column; 
+        gap: 30px;
+        text-align: center;
+    }
+
+    .About-left img, 
+    .About-left .Quote, 
+    .About-right {
+        width: 100%; 
+        max-width: 100%;
+    }
+
+    .About-left .Quote {
+        padding-left: 0;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .About-Heading {
+        font-size: 35px; 
+    }
+
+    .About-left img {
+        width: 100%;
+        max-width: 300px; 
+    }
+
+    .About-left .Quote {
+        font-size: 18px;
+    }
+
+    .slider-container {
+        height: 250px;
+    }
+
+    .About-right .About-right-heading {
+        font-size: 20px;
+    }
 }

@@ -64,3 +64,47 @@
     transform: translateY(-1px); 
 }
 
+/* --- Responsive Layout Queries --- */
+
+@media (max-width: 1024px) {
+    #Events {
+        padding: 40px 30px; /* Tablet par padding thori kam */
+    }
+
+    .Events-Content {
+        flex-wrap: wrap; /* Cards ko wrap karne ke liye */
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .Events-Heading {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    #Events {
+        padding: 40px 15px;
+    }
+
+    .Events-Content {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    .Events-Heading {
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .All-Events-Button {
+        margin-top: 20px;
+    }
+
+    .All-Events-Button button {
+        width: 100%; 
+        max-width: 300px;
+        font-size: 14px;
+        padding: 10px 24px;
+    }
+}

@@ -1,4 +1,4 @@
-/* --- Dashboard Layout --- */
+
 .dashboard-wrapper {
   padding: 180px 5% 50px;
   background: linear-gradient(
@@ -179,33 +179,38 @@
 
 /* --- Modal & Scroll Fix (Importat Updates) --- */
 .modal-overlay {
-  position: fixed;
+ position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.65);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(8px);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
   z-index: 9999;
-  padding: 20px;
+  padding: 15px; 
+  box-sizing: border-box;
 }
 
 .dashboard-card {
   background: #ffffff;
   width: 100%;
-  max-width: 500px;
-  padding: 35px;
+  max-width: 500px; /* Bare screens ke liye limit */
+  padding: 30px;
   border-radius: 24px;
   position: relative;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-  /* Scroll fix for long forms */
+  
+  /* Reset margins and alignment */
+  margin: 0 auto; 
+  left: 0;
+  right: 0;
+  
   max-height: 90vh;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 
 /* Custom Scrollbar for Modal */
@@ -305,7 +310,7 @@
 .status-select,
 textarea {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   border: 2px solid #edf2f7;
   border-radius: 12px;
   outline: none;
@@ -581,5 +586,13 @@ select:disabled {
   }
   .dashboard-wrapper {
     padding-top: 140px;
+  }
+  .dashboard-card{
+    padding: 20px;
+    width: 100%; 
+    margin: 0 auto;
+  }
+  .modal-overlay{
+    width: 100%;
   }
 }
