@@ -1,4 +1,7 @@
 /* ── Overlay ── */
+body{
+    overflow-x: hidden;
+}
 .modal-overlay {
     position: fixed;
     inset: 0;

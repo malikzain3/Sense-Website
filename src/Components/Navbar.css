@@ -1,4 +1,6 @@
-/* --- Desktop Styles (As it was) --- */
+body{
+    overflow-x:hidden;
+}
 #Navbar {
     display: flex;
     justify-content: space-between;

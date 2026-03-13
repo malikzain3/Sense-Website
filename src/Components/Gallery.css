@@ -1,3 +1,7 @@
+
+body{
+    overflow-x:hidden;
+}
 #Gallery {
     background-color: #d3f2f3;
     padding: 50px 0px;

@@ -1,3 +1,7 @@
+
+body{
+    overflow-x: hidden;
+}
 #Team{
     background-color: #fff;
     padding: 50px 70px;

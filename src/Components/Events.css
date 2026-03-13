@@ -1,3 +1,6 @@
+body{
+    overflow-x:hidden;
+}
 #Events{
     /* background-color: #ecd6b4; */
     background-color: #fff;

@@ -1,3 +1,6 @@
+body{
+    overflow-x:hidden;
+}
 .footer-wrapper {
   overflow: hidden;
   background: white;
