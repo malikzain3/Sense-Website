@@ -4,6 +4,7 @@ import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from 'react-router-dom'
 import "./Footer.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -110,20 +111,24 @@ const Footer = () => {
                   <a href="">Membership</a>
                 </div>
               </div>
-
-              <div className="Footer-Media">
-                <div className="Footer-Media-Heading">Social Media</div>
-                <div className="Footer-Support-links links">
-                  <a href="">Linkedin</a>
-                  <a href="">Instagram</a>
-                  <a href="">Facebook</a>
-                </div>
-              </div>
             </div>
           </div>
 
           <div className="line"></div>
-          <div className="Footer-Bottom">All Rights Reserved</div>
+          <div className="Footer-Bottom">
+            <div className="Footer-Bottom-left">
+              <div className="legal-pages links">
+                <Link to="/terms-and-conditions">Terms & Conditions</Link>
+                <Link to="/privacy-policy">Privacy Policy</Link>
+              </div>
+            </div>
+            <div className="Footer-Bottom-mid">
+              &copy; 2024 Software Engineering Society For Excellence - IIUI. All rights reserved.
+            </div>
+            <div className="Footer-Bottom-right">
+              Developed by SENSE Web Team
+            </div>
+          </div>
         </div>
       </div>
     </div>

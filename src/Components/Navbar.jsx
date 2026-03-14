@@ -32,6 +32,7 @@ const Navbar = () => {
       <div className={`Nav-wrapper ${isMenuOpen ? "active" : ""}`}>
         <ul className="Nav-links">
           <li><Link to="/" onClick={() => setIsMenuOpen(false)}>HOME</Link></li>
+          <li><Link to="/AboutPage" onClick={() => setIsMenuOpen(false)}>ABOUT US</Link></li>
           <li><Link to="/EventsPage" onClick={() => setIsMenuOpen(false)}>EVENTS</Link></li>
           <li><Link to="/GalleryPage" onClick={() => setIsMenuOpen(false)}>GALLERY</Link></li>
           <li><Link to="/ContactPage" onClick={() => setIsMenuOpen(false)}>CONTACT US</Link></li>

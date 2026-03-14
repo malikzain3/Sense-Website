@@ -9,6 +9,7 @@ import Footer from "./Components/Footer";
 import { Routes, Route } from "react-router-dom";
 import EventsPage from "./Pages/EventsPage";
 import Navbar from "./Components/Navbar";
+import AboutPage from './Pages/AboutPage'
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Components/Dashboard";
 import GalleryPage from "./Pages/GalleryPage";
@@ -17,12 +18,14 @@ import { Toaster } from 'react-hot-toast';
 import Lenis from "lenis";
 import ContactPage from "./Pages/ContactPage";
 import NotFound from "./Pages/NotFound.jsx";
+import TermsAndConditions from './pages/TermsAndConditions'
+import PrivacyPolicy from './Pages/PrivacyPolicy'
 
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
-      smoothWheel: true,  
+      smoothWheel: true,
       smoothTouch: false,
     });
 
@@ -39,8 +42,8 @@ function App() {
   }, []);
   return (
     <>
-    <Toaster position="top-right" reverseOrder={false} />
-    <Navbar />
+      <Toaster position="top-right" reverseOrder={false} />
+      <Navbar />
       <Routes>
         <Route
           path="/"
@@ -62,6 +65,9 @@ function App() {
         <Route path="/TeamPage" element={<TeamPage />} />
         <Route path="/ContactPage" element={<ContactPage />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/Aboutpage" element={<AboutPage />} />
       </Routes>
       <Footer />
     </>
