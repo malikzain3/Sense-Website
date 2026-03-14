@@ -82,6 +82,9 @@ body{
   font-size: 13px;
   line-height: 2;
 }
+.links a:hover {
+  color: rgb(70, 61, 61);
+}
 
 .line {
   height: 1.5px;

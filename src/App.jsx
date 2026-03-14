@@ -18,7 +18,7 @@ import { Toaster } from 'react-hot-toast';
 import Lenis from "lenis";
 import ContactPage from "./Pages/ContactPage";
 import NotFound from "./Pages/NotFound.jsx";
-import TermsAndConditions from './pages/TermsAndConditions'
+import TermsAndConditions from './Pages/TermsAndConditions'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
 
 function App() {
