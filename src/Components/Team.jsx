@@ -8,7 +8,7 @@ const Team = () => {
   const navigate = useNavigate();
   
   // Rank ke hisab se sort karke top 4 nikaal liye
-  const topFour = [...teamData].sort((a, b) => a.rank - b.rank).slice(0, 4);
+  const topFour = [...teamData].sort((a, b) => a.rank - b.rank).slice(0, 3);
 
   return (
     <div id='Team'>
@@ -17,7 +17,7 @@ const Team = () => {
         <div className="Team-Text">Meet Our Prestigious Team</div>
         <div className="Team-Member">
           {topFour.map((member) => (
-            <div key={member.id} className={`member-card-wrapper ${member.rank === 1 ? 'pres' : member.rank === 2 ? 'vp' : ''}`}>
+            <div key={member.id} className={`member-card-wrapper ${member.rank === 1 ? 'pres' : member.rank === 2 ? 'vp' : member.rank === 3 ? 'gs' : ''}`}>
               <TeamMemberInfo 
                 Image={member.image}
                 Name={member.name}

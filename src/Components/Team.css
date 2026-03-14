@@ -35,20 +35,14 @@ body{
 
 .More-Team-Button Button{
     background-color: #d3f2f3;
-    border: 1.5px solid #1dbbc3; /* Soft border matching the hover color */
-    color: #0f4c4e; /* Darker version for better readability */
-    
-    /* Spacing & Size */
+    border: 1.5px solid #1dbbc3; 
+    color: #0f4c4e; 
     padding: 12px 32px;
-    border-radius: 50px; /* Pill shape is more modern/professional */
-    
-    /* Typography */
+    border-radius: 50px;
     font-size: 16px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* Interaction */
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -67,7 +61,6 @@ body{
 .More-Team-Button button:active {
     transform: translateY(-1px); 
 }
-/* Tablet aur Mobile ke liye adjustments */
 @media (max-width: 768px) {
     #Team {
         padding: 40px 20px; /* Padding kam kar di taaki side se space bache */

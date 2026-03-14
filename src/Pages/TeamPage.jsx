@@ -16,7 +16,7 @@ const TeamPage = () => {
         <h2 className="section-title">Executive <span>Cabinet</span></h2>
         <div className="Team-Member" style={{flexWrap: 'wrap'}}>
           {cabinet.map((member) => (
-            <div key={member.id} className={`member-card-wrapper ${member.rank === 1 ? 'pres' : member.rank === 2 ? 'vp' : ''}`}>
+            <div key={member.id} className={`member-card-wrapper ${member.rank === 1 ? 'pres' : member.rank === 2 ? 'vp' : member.rank === 3 ? 'gs' : ''}`}>
               <TeamMemberInfo Image={member.image} Name={member.name} Designation={member.designation} />
             </div>
           ))}
@@ -27,7 +27,7 @@ const TeamPage = () => {
 
       {/* Team Section */}
       <div className="team-section">
-        <h2 className="section-title">Our <span>Team</span></h2>
+        <h2 className="section-title">Our <span>Core Team</span></h2>
         <div className="Team-Member" style={{flexWrap: 'wrap'}}>
           {team.map((member) => (
             <div key={member.id} className="member-card-wrapper">
