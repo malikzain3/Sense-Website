@@ -1,4 +1,10 @@
-
+.dashboard-card, .dashboard-card * {
+  box-sizing: border-box;
+}
+body.modal-open {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
 .dashboard-wrapper {
   padding: 180px 5% 50px;
   background: linear-gradient(
@@ -179,38 +185,37 @@
 
 /* --- Modal & Scroll Fix (Importat Updates) --- */
 .modal-overlay {
- position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center;     /* Center vertically */
-  z-index: 9999;
-  padding: 15px; 
-  box-sizing: border-box;
+  position: fixed !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex !important;
+  justify-content: center;
+  align-items: center; /* Screen ke bilkul beech mein */
+  z-index: 999999;
+  padding: 20px;
 }
 
 .dashboard-card {
-  background: #ffffff;
+  background: white;
   width: 100%;
-  max-width: 500px; /* Bare screens ke liye limit */
-  padding: 30px;
+  max-width: 550px;
+  max-height: 90vh; /* Screen ki height ka 90% se zyada bara nahi hoga */
   border-radius: 24px;
+  display: flex;
+  flex-direction: column; /* Header fix, body scroll */
   position: relative;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-  
-  /* Reset margins and alignment */
-  margin: 0 auto; 
-  left: 0;
-  right: 0;
-  
-  max-height: 90vh;
-  overflow-y: auto;
-  box-sizing: border-box;
+  overflow: hidden; /* Bahar nikalne wala kachra khatam */
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.dashboard-card form {
+  padding: 0 30px 30px 30px;
+  overflow-y: auto; /* Sirf inputs wala hissa scroll hoga */
+  flex: 1;
+}
+.dashboard-card * {
+  box-sizing: border-box;  /* Taake koi bhi input card se bahar na nikalay */
 }
 
 /* Custom Scrollbar for Modal */
@@ -288,9 +293,10 @@
 }
 
 .modal-title {
-  font-size: 1.8rem;
-  font-weight: 800;
-  margin-bottom: 25px;
+  padding: 30px 30px 10px 30px;
+  margin: 0;
+  background: white;
+  z-index: 10;
 }
 .modal-title span {
   color: #f59e0b;
@@ -306,15 +312,11 @@
   color: #2d3436;
   font-size: 0.9rem;
 }
-.form-group input,
-.status-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  border: 2px solid #edf2f7;
-  border-radius: 12px;
-  outline: none;
-  transition: 0.3s;
+.form-group input, 
+.form-group textarea, 
+.status-select {
+  width: 100% !important; /* Boundary se bahar jane ka chance hi nahi */
+  max-width: 100%;
 }
 
 .form-group input:focus,
@@ -592,7 +594,11 @@ select:disabled {
     width: 100%; 
     margin: 0 auto;
   }
-  .modal-overlay{
-    width: 100%;
+
+  .modal-overlay {
+    padding: 20px 10px;
+    width: 95%;
   }
 }
+
+

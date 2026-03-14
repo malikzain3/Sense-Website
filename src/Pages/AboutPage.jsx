@@ -48,8 +48,8 @@ const AboutPage = () => {
                         software engineers through knowledge, community, and innovation.
                     </p>
                     <div className="about-hero-btns">
-                        <button className="btn-primary" onClick={() => navigate('/events')}>Explore Events</button>
-                        <button className="btn-outline" onClick={() => navigate('/contact')}>Get in Touch</button>
+                        <button className="btn-primary" onClick={() => navigate('/EventsPage')}>Explore Events</button>
+                        <button className="btn-outline" onClick={() => navigate('/ContactPage')}>Get in Touch</button>
                     </div>
                 </div>
                 <div className="about-hero-visual">
@@ -156,10 +156,10 @@ const AboutPage = () => {
                         of a community that's shaping the future of software engineering at IIUI.
                     </p>
                     <div className="cta-btns">
-                        <button className="btn-primary light" onClick={() => navigate('/events')}>
+                        <button className="btn-primary light" onClick={() => navigate('/EventsPage')}>
                             View Upcoming Events
                         </button>
-                        <button className="btn-outline light" onClick={() => navigate('/contact')}>
+                        <button className="btn-outline light" onClick={() => navigate('/ContactPage')}>
                             Contact Us
                         </button>
                     </div>

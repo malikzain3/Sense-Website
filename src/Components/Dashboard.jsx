@@ -315,7 +315,7 @@ useEffect(() => {
       {/* --- EVENT MODAL --- */}
       {showForm && (
         <div className="modal-overlay">
-          <div className="dashboard-card">
+          <div className="dashboard-card" onClick={(e) => e.stopPropagation()}>
             <button className="close-btn" onClick={closeForm}>✕</button>
             <h2 className="modal-title">{isEditing ? "Edit" : "Add"} <span>Event</span></h2>
             <form onSubmit={handleSubmit}>
