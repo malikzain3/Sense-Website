@@ -58,7 +58,7 @@ body{
 
 .Footer-Sense-logo img {
   width: 150px;
-  height: 150px; /* make it square so it can't become oval by sizing */
+  height: 150px; 
   object-fit: contain;
   display: block;
 }
@@ -66,6 +66,13 @@ body{
 .Footer-Sense-Name {
   font-size: 20px;
   font-weight: 600;
+}
+
+.media-icon{
+  font-size: 25px;
+  color: black;
+  margin-top: 20px;
+  margin-right: 10px; 
 }
 
 .Footer-About-Us-links,

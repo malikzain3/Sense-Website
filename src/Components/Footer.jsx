@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Link } from 'react-router-dom'
+import { FaInstagram, FaLinkedin, FaFacebook } from "react-icons/fa";
 import "./Footer.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -70,6 +71,20 @@ const Footer = () => {
               <div className="Footer-Sense-Name">
                 Software Engineering Society For Excellence - IIUI
               </div>
+              <div className="gmail">
+                sense.iiu@gmail.com
+              </div>
+              <div className="media-links">
+                <a href="https://www.facebook.com/sense.iiui" target="_blank" rel="noopener noreferrer">
+                  <FaFacebook className="media-icon"/>
+                </a>
+                <a href="https://www.instagram.com/sense.iiui/" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="media-icon" />
+                </a>
+                <a href="https://www.linkedin.com/company/sense-iiui/" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="media-icon" />
+                </a>
+              </div>
             </div>
 
             <div className="Footer-Mid">
@@ -88,18 +103,18 @@ const Footer = () => {
               <div className="Footer-About-Us">
                 <div className="Footer-About-Us-Heading">About Us</div>
                 <div className="Footer-About-Us-links links">
-                  <a href="">History</a>
-                  <a href="">Our Vision</a>
-                  <a href="">Our Mission</a>
+                  <Link to="/AboutPage" onClick={() => setIsMenuOpen(false)}>History</Link>
+                  <Link to="/AboutPage" onClick={() => setIsMenuOpen(false)}>Our Vision</Link>
+                  <Link to="/AboutPage" onClick={() => setIsMenuOpen(false)}>Our Mission</Link>
                 </div>
               </div>
 
               <div className="Footer-Explore">
                 <div className="Footer-Explore-Heading">Explore</div>
                 <div className="Footer-Explore-links links">
-                  <a href="">Events</a>
-                  <a href="">Team</a>
-                  <a href="">Gallery</a>
+                  <Link to="/EventsPage" onClick={() => setIsMenuOpen(false)}>Events</Link>
+                  <Link to="/TeamPage" onClick={() => setIsMenuOpen(false)}>Team</Link>
+                  <Link to="/GalleryPage" onClick={() => setIsMenuOpen(false)}>Gallery</Link>
                 </div>
               </div>
 
