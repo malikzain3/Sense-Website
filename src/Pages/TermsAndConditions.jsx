@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import './LegalPage.css'
 
 const TermsAndConditions = () => {
 
