@@ -4,13 +4,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "commonjs",
-  "scripts": {
+ "scripts": {
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "react-scripts start",
     "server": "node server.js",
-    "dev": "concurrently \"vite\" \"npm run server\""
+    "dev": "concurrently \"vite --host\" \"npm run server\""
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

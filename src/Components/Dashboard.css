@@ -1,8 +1,11 @@
 .dashboard-card, .dashboard-card * {
   box-sizing: border-box;
 }
-body.modal-open {
+html:has(body.modal-open) {
   overflow: hidden !important;
+}
+body.modal-open {
+   overflow: hidden !important;
   height: 100vh !important;
 }
 .dashboard-wrapper {
@@ -185,34 +188,40 @@ body.modal-open {
 
 /* --- Modal & Scroll Fix (Importat Updates) --- */
 .modal-overlay {
-  position: fixed !important;
+   position: fixed !important;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   display: flex !important;
   justify-content: center;
-  align-items: center; /* Screen ke bilkul beech mein */
+  align-items: center;
   z-index: 999999;
   padding: 20px;
+  align-items: flex-start;
+  overflow-y: auto;
 }
 
 .dashboard-card {
-  background: white;
+   background: white;
   width: 100%;
   max-width: 550px;
-  max-height: 90vh; /* Screen ki height ka 90% se zyada bara nahi hoga */
+  max-height: 90vh;
   border-radius: 24px;
   display: flex;
-  flex-direction: column; /* Header fix, body scroll */
+  flex-direction: column;
   position: relative;
-  overflow: hidden; /* Bahar nikalne wala kachra khatam */
+  /* overflow: hidden; YE HATAYA - Scroll ke liye zaroori */
   box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  overflow: hidden;
+  margin: auto; 
 }
 
 .dashboard-card form {
   padding: 0 30px 30px 30px;
-  overflow-y: auto; /* Sirf inputs wala hissa scroll hoga */
+  overflow-y: auto;  /* YE SCROLL KAREGA */
   flex: 1;
+  max-height: calc(90vh - 120px);
+  overscroll-behavior: contain;
 }
 .dashboard-card * {
   box-sizing: border-box;  /* Taake koi bhi input card se bahar na nikalay */
@@ -222,7 +231,14 @@ body.modal-open {
 .dashboard-card::-webkit-scrollbar {
   width: 6px;
 }
+.dashboard-card form::-webkit-scrollbar {
+  width: 6px;
+}
 .dashboard-card::-webkit-scrollbar-thumb {
+  background: #f59e0b;
+  border-radius: 10px;
+}
+.dashboard-card form::-webkit-scrollbar-thumb {
   background: #f59e0b;
   border-radius: 10px;
 }
@@ -239,20 +255,21 @@ body.modal-open {
 }
 
 .close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #f1f2f6;
-  border: none;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s;
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: #f1f2f6 !important;
+  border: none !important;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: 0.3s !important;
+  z-index: 1000 !important;
 }
 .file-upload-box {
   border: 2px dashed #edf2f7;
