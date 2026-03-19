@@ -139,7 +139,7 @@ const Gallery = () => {
   return (
     <div id='Gallery'>
       <div className="Gallery-Heading">
-        GALLERY
+        Gallery
       </div>
 
       <div

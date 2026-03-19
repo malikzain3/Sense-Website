@@ -15,6 +15,8 @@ body{
     font-weight: 600;
     margin-bottom: 30px;
     padding: 0px 70px;
+    display: flex;
+    justify-content: center;
 }
 
 .Gallery-Container {

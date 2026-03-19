@@ -33,9 +33,9 @@ const About = () => {
                     </div>
                 </div>
                 <div className="About-right">
-                    <div className="About-right-heading">
+                    {/* <div className="About-right-heading">
                         Who Are We?
-                    </div>
+                    </div> */}
                     <div className="About-right-text">
                         Software Engineering Society is a thaki hui professional student organization focused on empowering students through hands-on learning and industryoriented activities i.e. Apna kharcha paani poora karna.
 
