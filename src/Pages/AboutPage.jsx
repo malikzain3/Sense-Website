@@ -1,20 +1,22 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './AboutPage.css'
 
 const stats = [
     { value: '500+', label: 'Active Members' },
-    { value: '50+',  label: 'Events Held' },
-    { value: '6',    label: 'Years Active' },
-    { value: '20+',  label: 'Industry Partners' },
+    { value: '50+', label: 'Events Held' },
+    { value: '6', label: 'Years Active' },
+    { value: '20+', label: 'Industry Partners' },
 ]
 
 const AboutPage = () => {
     const navigate = useNavigate()
-    const countersRef = useRef([])
+    const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
         window.scrollTo(0, 0)
+
+        const raf = requestAnimationFrame(() => setMounted(true))
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -25,11 +27,16 @@ const AboutPage = () => {
         }, { threshold: 0.15 })
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
-        return () => observer.disconnect()
+
+        return () => {
+            cancelAnimationFrame(raf)
+            observer.disconnect()
+        }
     }, [])
 
     return (
-        <div className="about-page">
+        <div className={`about-page ${mounted ? 'page-entered' : 'page-entering'}`}>
+
             <section className="about-hero">
                 <div className="about-hero-decoration">
                     <div className="hero-circle hc1"></div>
@@ -62,17 +69,15 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* ── STATS ── */}
             <section className="about-stats">
                 {stats.map((stat, i) => (
-                    <div className="stat-card reveal" key={i}>
+                    <div className="stat-card reveal" key={i} style={{ '--stat-i': i }}>
                         <div className="stat-value">{stat.value}</div>
                         <div className="stat-label">{stat.label}</div>
                     </div>
                 ))}
             </section>
 
-            {/* ── HISTORY ── */}
             <section className="about-section reveal">
                 <div className="section-label">Our Story</div>
                 <div className="about-history">
@@ -104,7 +109,7 @@ const AboutPage = () => {
                             { year: '2023', event: 'Partnered with 20+ tech companies' },
                             { year: '2024', event: 'Launched the SENSE official website' },
                         ].map((item, i) => (
-                            <div className="timeline-item" key={i}>
+                            <div className="timeline-item reveal" key={i} style={{ '--tl-i': i }}>
                                 <div className="timeline-year">{item.year}</div>
                                 <div className="timeline-dot"></div>
                                 <div className="timeline-event">{item.event}</div>
@@ -114,7 +119,6 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* ── VISION & MISSION ── */}
             <section className="about-vm reveal">
                 <div className="vm-card vision-card">
                     <div className="vm-icon">👁</div>

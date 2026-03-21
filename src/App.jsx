@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import About from "./Components/About";
 import Events from "./Components/Events";
 import Gallery from "./Components/Gallery";
@@ -21,6 +21,27 @@ import NotFound from "./Pages/NotFound.jsx";
 import TermsAndConditions from './Pages/TermsAndConditions'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
 
+function HomePage() {
+  const homeRef = useRef(null);
+
+  useEffect(() => {
+    if (!homeRef.current) return;
+    const el = homeRef.current;
+    const raf = requestAnimationFrame(() => el.classList.add("home-entered"));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return (
+    <div ref={homeRef} className="home-entering">
+      <HeroSection />
+      <About />
+      <Events />
+      <Gallery />
+      <Team />
+    </div>
+  );
+}
+
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -40,23 +61,13 @@ function App() {
       lenis.destroy();
     };
   }, []);
+
   return (
     <>
       <Toaster position="top-right" reverseOrder={false} />
       <Navbar />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <HeroSection />
-              <About />
-              <Events />
-              <Gallery />
-              <Team />
-            </>
-          }
-        />
+        <Route path="/" element={<HomePage />} />
 
         <Route path="/EventsPage" element={<EventsPage />} />
         <Route path="/LoginPage" element={<LoginPage />} />

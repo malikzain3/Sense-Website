@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./GalleryPage.css";
 
 const photos = [
@@ -26,7 +26,7 @@ const photos = [
 const COLUMNS = 4;
 
 const distributePhotos = (photos, cols) => {
-  const columns = Array.from({ length: cols }, () => []); 
+  const columns = Array.from({ length: cols }, () => []);
   photos.forEach((photo, i) => {
     columns[i % cols].push(photo);
   });
@@ -35,43 +35,46 @@ const distributePhotos = (photos, cols) => {
 
 const GalleryPage = () => {
   const [hoveredId, setHoveredId] = useState(null);
+  const [mounted, setMounted] = useState(false);
   const columns = distributePhotos(photos, COLUMNS);
 
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
   return (
-    <div className="gallery-page">
-      
-      {/* --- PAGE HEADING --- */}
+    <div className={`gallery-page ${mounted ? "page-entered" : "page-entering"}`}>
+
       <div className="heading-container">
         <h1 className="page-title">
           OUR <span className="title-highlight">GALLERY</span>
         </h1>
       </div>
 
-      {/* --- MASONRY GRID --- */}
       <div className="masonry-grid">
         {columns.map((column, colIndex) => (
-          <div className="masonry-column" key={colIndex}>
-            {column.map((photo) => (
+          <div
+            className="masonry-column"
+            key={colIndex}
+            style={{ "--col-i": colIndex }}
+          >
+            {column.map((photo, rowIndex) => (
               <div
                 className="masonry-item"
                 key={photo.id}
+                style={{ "--item-i": colIndex * column.length + rowIndex }}
                 onMouseEnter={() => setHoveredId(photo.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
                 <img src={photo.src} alt={photo.alt} loading="lazy" />
 
-                {/* Event Details Hover Overlay */}
-                <div
-                  className={`masonry-overlay ${
-                    hoveredId === photo.id ? "visible" : ""
-                  }`}
-                >
+                <div className={`masonry-overlay ${hoveredId === photo.id ? "visible" : ""}`}>
                   <div className="overlay-content">
                     <h3 className="event-title">{photo.title}</h3>
                     <p className="event-description">{photo.description}</p>
                   </div>
                 </div>
-                
               </div>
             ))}
           </div>

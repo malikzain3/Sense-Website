@@ -1,9 +1,31 @@
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
 .events-container {
     padding-top: 130px;
     padding-bottom: 50px;
     background-color: #f9fafb;
     min-height: 100vh;
     width: 100%;
+}
+
+.events-container.page-entering {
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+.events-container.page-entered {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .events-title {
@@ -13,6 +35,10 @@
     margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
+
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
 }
 
 .events-title span {
@@ -39,8 +65,15 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     cursor: pointer;
-    transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(29, 187, 195, 0.1);
+    opacity: 0;
+    transform: translateY(12px);
+    animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) calc(0.25s + var(--i, 0) * 0.06s) forwards;
+    transition: background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
 }
 
 .filter-btn:hover {
@@ -57,15 +90,16 @@
     transform: translateY(-2px);
 }
 
-/* ── No Events ── */
 .no-events {
     text-align: center;
     font-size: 1.2rem;
     color: #888;
     margin-top: 60px;
+
+    opacity: 0;
+    animation: fadeIn 0.4s ease 0.1s forwards;
 }
 
-/* ── Grid ── */
 .events-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -76,9 +110,35 @@
     align-items: stretch;
 }
 
-.events-grid > div {
+.events-grid>div {
     display: flex;
     height: 100%;
+}
+
+.card-wrapper {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: cardEnter 0.5s cubic-bezier(0.22, 1, 0.36, 1) calc(min(var(--card-i, 0), 11) * 0.07s) forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes cardEnter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 1100px) {
