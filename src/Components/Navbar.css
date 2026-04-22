@@ -1,7 +1,6 @@
 body {
     overflow-x: hidden;
 }
-
 #Navbar {
     display: flex;
     justify-content: space-between;
@@ -66,6 +65,14 @@ body {
     color: #1dbbc3;
     background: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
+}
+
+.Nav-links li a.active {
+    color: #1dbbc3;
+    font-weight: 700;
+    border-bottom: 2px solid #1dbbc3;
+    padding-bottom: 6px;
+    
 }
 
 .Join-us,
