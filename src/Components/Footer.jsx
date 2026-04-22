@@ -72,7 +72,7 @@ const Footer = () => {
                 Software Engineering Society For Excellence - IIUI
               </div>
               <div className="gmail">
-                sense.iiu@gmail.com
+                sense.iiui.dse@gmail.com
               </div>
               <div className="media-links">
                 <a href="https://www.facebook.com/sense.iiui" target="_blank" rel="noopener noreferrer">

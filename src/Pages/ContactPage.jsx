@@ -58,7 +58,7 @@ const ContactPage = () => {
     <div className="contact-page">
       <div className="heading-container">
         <h1 className="page-title">
-          CONTACT <span className="title-highlight">US</span>
+          GET IN TOUCH  <span className="title-highlight">WITH US</span>
         </h1>
         <p className="contact-subtitle">
           Have questions, want to join, or looking to collaborate? Reach out to the SENSE Society team!
@@ -73,7 +73,7 @@ const ContactPage = () => {
             <span className="info-icon"><FaPhoneAlt /></span>
             <div>
               <strong>Phone:</strong>
-              <p>+92 300 0000000 <br /><span className="info-subtext">(Society Representative)</span></p>
+              <p>+92 3216776046 <br /><span className="info-subtext">(Society Representative)</span></p>
             </div>
           </div>
 
@@ -81,7 +81,7 @@ const ContactPage = () => {
             <span className="info-icon"><FaEnvelope /></span>
             <div>
               <strong>Email:</strong>
-              <p>sense.society@iiu.edu.pk</p>
+              <p>sense.iiui.dse@gmail.com </p>
             </div>
           </div>
 

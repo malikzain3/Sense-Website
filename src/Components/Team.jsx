@@ -28,7 +28,7 @@ const Team = () => {
         </div>
       </div>
       <div className="More-Team-Button">
-        <button onClick={() => navigate('/TeamPage')}>See Our Core Team</button>
+        <button onClick={() => navigate('/TeamPage')}>See Our Team</button>
       </div>
     </div>
   )

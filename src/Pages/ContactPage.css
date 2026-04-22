@@ -14,7 +14,8 @@
   color: #000000;
   text-transform: uppercase;
   margin: 0;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  word-spacing: 5px;
 }
 
 .title-highlight {

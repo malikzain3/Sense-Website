@@ -46,7 +46,7 @@ const LoginPage = () => {
 
         {/* Right Side: Form Area */}
         <form className="login-form" onSubmit={handleLogin}>
-          <h2 className="login-title">Member Login</h2>
+          <h2 className="login-title">Admin Login</h2>
 
           <div className="input-group">
             <span className="input-icon">

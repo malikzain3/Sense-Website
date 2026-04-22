@@ -48,7 +48,7 @@ const Navbar = () => {
           {isLoggedIn ? (
             <button className="Logout-Btn" onClick={handleLogout}>Logout</button>
           ) : (
-            <Link className="Join-us" to="/LoginPage" onClick={() => setIsMenuOpen(false)}>Login</Link>
+            <Link className="Join-us" to="/ContactPage" onClick={() => setIsMenuOpen(false)}>Join Us</Link>
           )}
         </div>
       </div>
