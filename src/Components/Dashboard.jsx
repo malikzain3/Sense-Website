@@ -74,9 +74,9 @@ const Dashboard = () => {
     const file = e.target.files[0];
     if (!file) return;
     const fileName = `events/${Date.now()}_${file.name}`;
-    const { error } = await supabase.storage.from('images').upload(fileName, file);
+    const { error } = await supabase.storage.from('Images').upload(fileName, file);
     if (error) { toast.error("Image upload failed!"); return; }
-    const { data } = supabase.storage.from('images').getPublicUrl(fileName);
+    const { data } = supabase.storage.from('Images').getPublicUrl(fileName);
     setFormData(prev => ({ ...prev, image_url: data.publicUrl }));
     toast.success("Image uploaded! 📸");
   };
@@ -107,9 +107,9 @@ const Dashboard = () => {
     const file = e.target.files[0];
     if (!file) return;
     const fileName = `gallery/${Date.now()}_${file.name}`;
-    const { error } = await supabase.storage.from('images').upload(fileName, file);
+    const { error } = await supabase.storage.from('Images').upload(fileName, file);
     if (error) { toast.error("Upload failed!"); return; }
-    const { data } = supabase.storage.from('images').getPublicUrl(fileName);
+    const { data } = supabase.storage.from('Images').getPublicUrl(fileName);
     const { error: dbError } = await supabase.from('gallery').insert([{ image_url: data.publicUrl }]);
     if (dbError) { toast.error("Save failed!"); return; }
     toast.success("Photo added! 🖼️");
@@ -127,9 +127,9 @@ const Dashboard = () => {
     const file = e.target.files[0];
     if (!file) return;
     const fileName = `team/${Date.now()}_${file.name}`;
-    const { error } = await supabase.storage.from('images').upload(fileName, file);
+    const { error } = await supabase.storage.from('Images').upload(fileName, file);
     if (error) { toast.error("Upload failed!"); return; }
-    const { data } = supabase.storage.from('images').getPublicUrl(fileName);
+    const { data } = supabase.storage.from('Images').getPublicUrl(fileName);
     setTeamFormData(prev => ({ ...prev, image_url: data.publicUrl }));
     toast.success("Photo uploaded! 📸");
   };
@@ -168,6 +168,7 @@ const Dashboard = () => {
   if (loading) return <div style={{textAlign:'center', padding:'100px', fontSize:'24px'}}>Loading... ⏳</div>;
 
   return (
+    
     <div className="dashboard-wrapper">
 
       {/* 1. EVENTS SECTION */}
