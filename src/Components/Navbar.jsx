@@ -1,20 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
 import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
 import { Link, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
+import { supabase } from "../supabase";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const location = useLocation();
-  const isLoggedIn = !!localStorage.getItem("adminToken");
+
+  useEffect(() => {
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+      setIsLoggedIn(!!session);
+    };
+    checkUser();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setIsLoggedIn(!!session);
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   const isActive = (path) => {
     return location.pathname === path ? "active" : "";
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
     toast.success("Logged out successfully!");
     setTimeout(() => { window.location.href = "/"; }, 500);
   };

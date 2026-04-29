@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./LoginPage.css";
 import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
 import toast from "react-hot-toast";
+import { supabase } from "../supabase";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -16,24 +17,22 @@ const LoginPage = () => {
   }, []);
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    // Ahmed yahan API url laga do login ke liye, aur email/password bhejo
-    console.log("Login Attempt:", { email, password });
+  const { error } = await supabase.auth.signInWithPassword({
+    email: email,
+    password: password,
+  });
 
-    try {
-      const dummyToken = "SENSE_ADMIN_TOKEN_123";
-
-      localStorage.setItem("adminToken", dummyToken);
-      toast.success("Welcome Back, Admin! 👋");
-      setTimeout(() => {
-        window.location.href = "/Dashboard";
-      }, 1000);
-    } catch (error) {
-      console.error(error);
-      toast.error("Login fail ho gaya!");
-    }
-  };
+  if (error) {
+    toast.error("Email ya password galat hai!");
+  } else {
+    toast.success("Welcome Back, Admin! 👋");
+    setTimeout(() => {
+      window.location.href = "/Dashboard";
+    }, 1000);
+  }
+};
 
   return (
     <div className="login-container">

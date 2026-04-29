@@ -1,34 +1,34 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import EventCard from "../Components/EventCard";
-import eventsData from "../eventsData.js";
 import "./EventsPage.css";
+import { supabase } from "../supabase";
 
 const EventsPage = () => {
   const [mounted, setMounted] = useState(false);
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const t = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(t);
   }, []);
 
-  const allEvents = [...eventsData].reverse();
+  useEffect(() => {
+    const fetchEvents = async () => {
+      const { data } = await supabase.from('events').select('*').order('created_at', { ascending: false });
+      if (data) setEvents(data);
+    };
+    fetchEvents();
+  }, []);
 
   return (
     <div className={`events-container ${mounted ? "page-entered" : "page-entering"}`}>
-      <h1 className="events-title">
-        All <span>Events</span>
-      </h1>
-
-      {allEvents.length === 0 ? (
+      <h1 className="events-title">All <span>Events</span></h1>
+      {events.length === 0 ? (
         <p className="no-events">No events found.</p>
       ) : (
         <div className="events-grid">
-          {allEvents.map((item, i) => (
-            <div
-              key={item.id}
-              className="card-wrapper flex justify-center"
-              style={{ "--card-i": i }}
-            >
+          {events.map((item, i) => (
+            <div key={item.id} className="card-wrapper flex justify-center" style={{ "--card-i": i }}>
               <EventCard {...item} />
             </div>
           ))}
