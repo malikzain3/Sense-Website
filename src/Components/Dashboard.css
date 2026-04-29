@@ -1,12 +1,8 @@
 .dashboard-card, .dashboard-card * {
   box-sizing: border-box;
 }
-html:has(body.modal-open) {
-  overflow: hidden !important;
-}
 body.modal-open {
-   overflow: hidden !important;
-  height: 100vh !important;
+  overflow: hidden !important;
 }
 .dashboard-wrapper {
   padding: 180px 5% 50px;
@@ -188,40 +184,33 @@ body.modal-open {
 
 /* --- Modal & Scroll Fix (Importat Updates) --- */
 .modal-overlay {
-   position: fixed !important;
+  position: fixed !important;
   top: 0; left: 0; right: 0; bottom: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(10px);
   display: flex !important;
   justify-content: center;
-  align-items: center;
-  z-index: 999999;
-  padding: 20px;
   align-items: flex-start;
-  overflow-y: auto;
+  z-index: 999999;
+  padding: 40px 20px;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
 }
 
 .dashboard-card {
-   background: white;
+  background: white;
   width: 100%;
   max-width: 550px;
-  max-height: 90vh;
   border-radius: 24px;
-  display: flex;
-  flex-direction: column;
   position: relative;
-  /* overflow: hidden; YE HATAYA - Scroll ke liye zaroori */
   box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-  overflow: hidden;
-  margin: auto; 
+  margin: auto;
+  flex-shrink: 0;
 }
 
 .dashboard-card form {
   padding: 0 30px 30px 30px;
-  overflow-y: auto;  /* YE SCROLL KAREGA */
   flex: 1;
-  max-height: calc(90vh - 120px);
-  overscroll-behavior: contain;
 }
 .dashboard-card * {
   box-sizing: border-box;  /* Taake koi bhi input card se bahar na nikalay */
@@ -616,6 +605,50 @@ select:disabled {
     padding: 20px 10px;
     width: 95%;
   }
+
+  .global-save-container {
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
+/* --- Global Save Button --- */
+.global-save-container {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 1000;
+}
 
+.global-save-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(245, 158, 11, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.global-save-btn:hover:not(:disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(245, 158, 11, 0.5);
+}
+
+.global-save-btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  cursor: not-allowed;
+  border: 1px solid #cbd5e1;
+}
+
+.global-save-btn:disabled .save-icon {
+  opacity: 0.5;
+}

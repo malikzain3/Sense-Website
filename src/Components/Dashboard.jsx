@@ -19,6 +19,11 @@ const Dashboard = () => {
   const [events, setEvents] = useState(eventsData);
   const [gallery, setGallery] = useState(galleryData);
   const [team, setTeam] = useState(teamData);
+
+  const [baselineEvents, setBaselineEvents] = useState(eventsData);
+  const [baselineGallery, setBaselineGallery] = useState(galleryData);
+  const [baselineTeam, setBaselineTeam] = useState(teamData);
+
   const [showForm, setShowForm] = useState(false);
   const [showTeamForm, setShowTeamForm] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
@@ -45,9 +50,16 @@ const Dashboard = () => {
  
 useEffect(() => {
   if (showForm || showTeamForm) {
-    document.body.classList.add("modal-open");
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
   } else {
-    document.body.classList.remove("modal-open");
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    if (scrollY) window.scrollTo(0, parseInt(scrollY || '0') * -1);
   }
 }, [showForm, showTeamForm]);
 
@@ -139,8 +151,31 @@ useEffect(() => {
     });
   };
 
+  const hasChanges = 
+    JSON.stringify(events) !== JSON.stringify(baselineEvents) ||
+    JSON.stringify(gallery) !== JSON.stringify(baselineGallery) ||
+    JSON.stringify(team) !== JSON.stringify(baselineTeam);
+
+  const handleGlobalSave = () => {
+    setBaselineEvents(events);
+    setBaselineGallery(gallery);
+    setBaselineTeam(team);
+    toast.success("All changes saved successfully! 🚀");
+  };
+
   return (
     <div className="dashboard-wrapper">
+      {/* --- GLOBAL SAVE BUTTON --- */}
+      <div className="global-save-container">
+        <button 
+          className="global-save-btn" 
+          disabled={!hasChanges} 
+          onClick={handleGlobalSave}
+        >
+          <span className="save-icon">💾</span> {hasChanges ? "Save Changes" : "No Changes"}
+        </button>
+      </div>
+
       {/* 1. EVENTS SECTION */}
       <div className="dashboard-section">
         <div className="dashboard-header">

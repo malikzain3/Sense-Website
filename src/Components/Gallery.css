@@ -11,13 +11,24 @@ body{
   will-change: transform; /* Performance boost for motion */
 }
 .Gallery-Heading {
-    font-size: 50px;
-    font-weight: 600;
-    margin-bottom: 30px;
-    padding: 0px 70px;
-    display: flex;
-    justify-content: center;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #0f4c4e;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
+.Gallery-Heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #1dbbc3;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}   
 
 .Gallery-Container {
     overflow: hidden;

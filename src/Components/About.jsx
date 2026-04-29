@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import "./About.css"
-import senseLogoBlack from "../assets/SENSE-logo-blacck.png"
+import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
 import Eventimage1 from "../assets/Pic.jpg"
 
 const images = [
@@ -27,7 +27,7 @@ const About = () => {
             </div>
             <div className="About-Content">
                 <div className="About-left">
-                    <img src={senseLogoBlack} alt="logo" />
+                    <img src={senseLogo} alt="logo" />
                     <div className="Quote">
                         " Where Future Software Engineers Are Built. Celebrate everyday with SENSE-IIUI "
                     </div>
@@ -37,11 +37,15 @@ const About = () => {
                         Who Are We?
                     </div> */}
                     <div className="About-right-text">
-                        Software Engineering Society is a thaki hui professional student organization focused on empowering students through hands-on learning and industryoriented activities i.e. Apna kharcha paani poora karna.
-
-                        Our mission is to create opportunities for students to gain technical expertise, problem-solving skills, and teamwork experience by engaging in practical events, mentorship programs, and technical discussions. And we are not ashamed to confess we made the society just for the sake of co events, you know poundi etc.
-
-                        We believe in learning by doing and building a strong community that supports innovation, collaboration, and continuous growth.
+                        <p>
+                            The Software Engineering Society for Excellence (SENSE) at IIUI is a premier student organization dedicated to empowering the next generation of tech leaders. We bridge the gap between academic theory and industry practice through hands-on learning, workshops, and collaborative projects.
+                        </p>
+                        <p>
+                            Our mission is to cultivate technical expertise, enhance problem-solving skills, and foster a spirit of teamwork. By organizing seminars, hackathons, and mentorship programs, we provide our members with the practical experience necessary to thrive in the fast-paced world of technology.
+                        </p>
+                        <p>
+                            We are committed to building a vibrant and inclusive community where innovation flourishes. At SENSE, we believe in learning by doing, continuous growth, and supporting one another to shape a brighter digital future.
+                        </p>
                     </div>
 
                     <div className="slider-container">

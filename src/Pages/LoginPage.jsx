@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"; 
-
 import "./LoginPage.css";
-import senseLogoBlack from "../assets/SENSE-logo-blacck.png";
+import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
 import toast from "react-hot-toast";
 
 const LoginPage = () => {
@@ -41,7 +40,7 @@ const LoginPage = () => {
       <div className="login-box">
         {/* Left Side: Logo Area */}
         <div className="login-image-section js-tilt">
-          <img src={senseLogoBlack} alt="SENSE Logo" />
+          <img src={senseLogo} alt="SENSE Logo" />
         </div>
 
         {/* Right Side: Form Area */}

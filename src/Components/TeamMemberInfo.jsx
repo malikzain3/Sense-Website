@@ -4,7 +4,8 @@ import "./TeamMemberInfo.css"
 const TeamMemberInfo = ({
     Image,
     Name,
-    Designation
+    Designation,
+    Category
 }) => {
   return (
     <div id='TeamMemberInfo'>
@@ -17,6 +18,11 @@ const TeamMemberInfo = ({
         <div className="Team-Member-Designation">
            {Designation}
         </div>
+        {Category && (
+            <div className="Team-Member-Category">
+                {Category === "Cabinet" ? "Cabinet Member" : "Core Team Member"}
+            </div>
+        )}
     </div>
   )
 }

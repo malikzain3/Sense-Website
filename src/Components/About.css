@@ -7,32 +7,61 @@ body{
 }
 
 .About-Heading{
-    font-size: 50px;
-    font-weight: 600;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #0f4c4e;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.About-Heading::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #1dbbc3;
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 .About-Content{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
 }
 
 .About-left img{
     width: 500px;
-    opacity: 0.4;
+    opacity: 0.9;
 }
 
 .About-left .Quote{
     width: 500px;
-    font-size: 23px;
+    font-size: 22px;
     padding-left: 20px;
     font-weight: 500;
+    font-style: italic;
+    color: #0f4c4e;
+    margin-top: 20px;
+    border-left: 4px solid #1dbbc3;
 }
 
 .About-right{
     width: 650px;
+}
+
+.About-right-text {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    text-align: justify;
+}
+
+.About-right-text p {
+    margin-bottom: 16px;
 }
 
 /* .About-right .About-right-heading{

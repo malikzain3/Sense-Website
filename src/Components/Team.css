@@ -8,17 +8,33 @@ body{
 }
 
 .Team-Heading{
-    font-size: 50px;
-    font-weight: 600;
-    margin-bottom: 20px;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #0f4c4e;
     text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+.Team-Heading:After{
+     content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: #1dbbc3;
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
 .Team-Text{
-    font-size: 23px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    font-size: 1.15rem;
+    color: #555;
+    text-align: center;
+    line-height: 1.8;
+    max-width: 650px;
+    margin: 0 auto 40px auto;
+    font-weight: 400;
 }
 
 .Team-Member{

@@ -22,12 +22,13 @@ const Team = () => {
                 Image={member.image}
                 Name={member.name}
                 Designation={member.designation}
+                Category={member.category}
               />
             </div>
           ))}
         </div>
       </div>
-      <div className="More-Team-Button">
+      <div className="More-Team-Button">  
         <button onClick={() => navigate('/TeamPage')}>See Our Team</button>
       </div>
     </div>

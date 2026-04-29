@@ -1,20 +1,32 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import './AboutPage.css'
 
 const stats = [
-    { value: '500+', label: 'Active Members' },
+    { value: '200+', label: 'Active Members' },
     { value: '50+', label: 'Events Held' },
-    { value: '6', label: 'Years Active' },
+    { value: '2', label: 'Years Active' },
     { value: '20+', label: 'Industry Partners' },
 ]
 
 const AboutPage = () => {
     const navigate = useNavigate()
+    const { hash } = useLocation()
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        if (hash) {
+            setTimeout(() => {
+                const id = hash.replace('#', '')
+                const element = document.getElementById(id)
+                if (element) {
+                    const topPos = element.getBoundingClientRect().top + window.scrollY - 100;
+                    window.scrollTo({ top: topPos, behavior: 'smooth' });
+                }
+            }, 100);
+        } else {
+            window.scrollTo(0, 0)
+        }
 
         const raf = requestAnimationFrame(() => setMounted(true))
 
@@ -62,8 +74,8 @@ const AboutPage = () => {
                 <div className="about-hero-visual">
                     <div className="hero-badge">
                         <div className="badge-inner">
-                            <span className="badge-title">SENSE</span>
-                            <span className="badge-sub">Est. 2018</span>
+                            <span className="badge-title">SENSE-IIUI</span>
+                            <span className="badge-sub">Est. 2025</span>
                         </div>
                     </div>
                 </div>
@@ -78,14 +90,14 @@ const AboutPage = () => {
                 ))}
             </section>
 
-            <section className="about-section reveal">
+            <section className="about-section reveal" id="history">
                 <div className="section-label">Our Story</div>
                 <div className="about-history">
                     <div className="history-text">
-                        <h2>The History of <span>SENSE</span></h2>
+                        <h2>The History of <span>SENSE-IIUI</span></h2>
                         <p>
-                            Founded in 2018 by a group of passionate software engineering students
-                            at IIUI, SENSE was born out of a shared vision — to bridge the gap
+                            Founded in 2025 by a group of passionate software engineering students
+                            at IIUI, SENSE-IIUI was born out of a shared vision — to bridge the gap
                             between academic learning and the real world of technology.
                         </p>
                         <p>
@@ -95,19 +107,19 @@ const AboutPage = () => {
                             across all years of study.
                         </p>
                         <p>
-                            Over the years, SENSE has organized workshops, hackathons, seminars,
+                            Over the years, SENSE-IIUI has organized workshops, hackathons, seminars,
                             and networking events — connecting students with industry professionals,
                             alumni, and fellow engineers from universities across Pakistan.
                         </p>
                     </div>
                     <div className="history-timeline">
                         {[
-                            { year: '2018', event: 'SENSE founded at IIUI' },
-                            { year: '2019', event: 'First inter-university hackathon' },
-                            { year: '2020', event: 'Launched online workshops during COVID-19' },
-                            { year: '2021', event: 'Reached 200+ active members' },
-                            { year: '2023', event: 'Partnered with 20+ tech companies' },
-                            { year: '2024', event: 'Launched the SENSE official website' },
+                            { year: '2025', event: 'SENSE founded at IIUI' },
+                            { year: '2025', event: 'First inter-university hackathon' },
+                            { year: '2025', event: 'Partnered with 20+ tech companies' },
+                            { year: '2025', event: 'Reached 100+ active members' },
+                            { year: '2026', event: 'Launched online workshops during Lockdown' },
+                            { year: '2026', event: 'Launched the SENSE-IIUI official website' },
                         ].map((item, i) => (
                             <div className="timeline-item reveal" key={i} style={{ '--tl-i': i }}>
                                 <div className="timeline-year">{item.year}</div>
@@ -120,7 +132,7 @@ const AboutPage = () => {
             </section>
 
             <section className="about-vm reveal">
-                <div className="vm-card vision-card">
+                <div className="vm-card vision-card" id="vision">
                     <div className="vm-icon">👁</div>
                     <div className="section-label">Our Vision</div>
                     <h3>A Future Built by IIUI Engineers</h3>
@@ -132,7 +144,7 @@ const AboutPage = () => {
                     </p>
                 </div>
                 <div className="vm-divider"></div>
-                <div className="vm-card mission-card">
+                <div className="vm-card mission-card" id="mission">
                     <div className="vm-icon">🎯</div>
                     <div className="section-label">Our Mission</div>
                     <h3>Empowering Students, One Event at a Time</h3>
@@ -153,7 +165,7 @@ const AboutPage = () => {
                 </div>
                 <div className="cta-content">
                     <span className="about-tag light">Join the Community</span>
-                    <h2>Ready to Be Part of <span>SENSE?</span></h2>
+                    <h2>Ready to Be Part of <span>SENSE-IIUI?</span></h2>
                     <p>
                         Whether you're a first-year student or a final-year engineer, there's
                         a place for you in SENSE. Join us, attend our events, and become part

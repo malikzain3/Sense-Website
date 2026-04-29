@@ -62,6 +62,22 @@
     color: #636e72;
 }
 
+.Team-Member-Category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(29, 187, 195, 0.15);
+    color: #0f4c4e;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 12px auto 0;
+    width: max-content;
+}
+
 .member-card-wrapper.pres #TeamMemberInfo {
     background: #f0fbfc;
     border-bottom: 5px solid #f59e0b;

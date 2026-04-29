@@ -17,7 +17,7 @@ const TeamPage = () => {
         <div className="Team-Member" style={{flexWrap: 'wrap'}}>
           {cabinet.map((member) => (
             <div key={member.id} className={`member-card-wrapper ${member.rank === 1 ? 'pres' : member.rank === 2 ? 'vp' : member.rank === 3 ? 'gs' : ''}`}>
-              <TeamMemberInfo Image={member.image} Name={member.name} Designation={member.designation} />
+              <TeamMemberInfo Image={member.image} Name={member.name} Designation={member.designation} Category={member.category} />
             </div>
           ))}
         </div>
@@ -31,7 +31,7 @@ const TeamPage = () => {
         <div className="Team-Member" style={{flexWrap: 'wrap'}}>
           {team.map((member) => (
             <div key={member.id} className="member-card-wrapper">
-              <TeamMemberInfo Image={member.image} Name={member.name} Designation={member.designation} />
+              <TeamMemberInfo Image={member.image} Name={member.name} Designation={member.designation} Category={member.category} />
             </div>
           ))}
         </div>
