@@ -38,6 +38,8 @@ const Dashboard = () => {
     venue: "",
     image: "",
     status: "Upcoming",
+    registerLink: "",
+    driveLink: "",
   });
   const [teamFormData, setTeamFormData] = useState({
     name: "",
@@ -137,6 +139,8 @@ useEffect(() => {
       venue: "",
       image: "",
       status: "Upcoming",
+      registerLink: "",
+      driveLink: "",
     });
   };
   const closeTeamForm = () => {
@@ -390,6 +394,17 @@ useEffect(() => {
                 <div className="input-box">
                     <label>Venue</label>
                     <input placeholder="Hall 1" value={formData.venue} onChange={(e) => setFormData({ ...formData, venue: e.target.value })} required />
+                </div>
+              </div>
+
+              <div className="form-row">
+                 <div className="input-box">
+                    <label>Registration Link (Google Form)</label>
+                    <input placeholder="https://forms.gle/..." value={formData.registerLink || ''} onChange={(e) => setFormData({ ...formData, registerLink: e.target.value })} />
+                </div>
+                <div className="input-box">
+                    <label>Drive Link (Photos)</label>
+                    <input placeholder="https://drive.google.com/..." value={formData.driveLink || ''} onChange={(e) => setFormData({ ...formData, driveLink: e.target.value })} />
                 </div>
               </div>
 

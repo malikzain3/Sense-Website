@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import "./EventCard.css"
 import timeIcon from "../assets/clock.png"
 import location from "../assets/pin.png"
-import RSVPModal from './RSVPModal'
 
 function useCountdown(date, month, year, time) {
     const [timeLeft, setTimeLeft] = useState(null)
@@ -55,9 +54,8 @@ function useCountdown(date, month, year, time) {
 }
 
 const EventCard = ({
-    image, title, desc, date, month, year, time, venue, status, category, id
+    image, title, desc, date, month, year, time, venue, status, category, id, registerLink, driveLink
 }) => {
-    const [showModal, setShowModal] = useState(false)
     const timeLeft = useCountdown(date, month, year, time)
 
     return (
@@ -103,22 +101,18 @@ const EventCard = ({
                         <div className={`Status ${status}`}>
                             Status: {status === "upcoming" ? "UPCOMING" : "DONE"}
                         </div>
-                        {status === "upcoming" && (
-                            <button className="RSVP-Btn" onClick={() => setShowModal(true)}>
+                        {status === "upcoming" ? (
+                            <a href={registerLink || '#'} target="_blank" rel="noopener noreferrer" className="RSVP-Btn" style={{textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                                 Register
-                            </button>
+                            </a>
+                        ) : (
+                            <a href={driveLink || '#'} target="_blank" rel="noopener noreferrer" className="RSVP-Btn" style={{textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#10b981'}}>
+                                Event Photos
+                            </a>
                         )}
                     </div>
                 </div>
             </div>
-
-            {showModal && (
-                <RSVPModal
-                    eventId={id}
-                    eventTitle={title}
-                    onClose={() => setShowModal(false)}
-                />
-            )}
         </>
     )
 }

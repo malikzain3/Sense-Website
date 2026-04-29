@@ -163,7 +163,6 @@
 
 .RSVP-Btn {
     background-color: #d3f2f3;
-<<<<<<< HEAD
     border: 1.5px solid #1dbbc3; 
     color: #0f4c4e; 
     
@@ -172,12 +171,10 @@
     border-radius: 50px; 
     
     /* Typography */
-=======
     border: 1.5px solid #1dbbc3;
     color: #0f4c4e;
     padding: 6px 20px;
     border-radius: 50px;
->>>>>>> 7cf5ae0d65e24642e865a175d0aea08d095749ec
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
@@ -198,7 +195,6 @@
 }
 
 .RSVP-Btn:active {
-<<<<<<< HEAD
     transform: translateY(-1px); 
 }
 
@@ -245,7 +241,4 @@
         width: 100%; 
         text-align: center;
     }
-=======
-    transform: translateY(-1px);
->>>>>>> 7cf5ae0d65e24642e865a175d0aea08d095749ec
 }
