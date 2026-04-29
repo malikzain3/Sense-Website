@@ -54,7 +54,9 @@ function useCountdown(date, month, year, time) {
 }
 
 const EventCard = ({
-    image, title, desc, date, month, year, time, venue, status, category, id, registerLink, driveLink
+    image, title, desc, date, month, year, time, venue, status, category, id, 
+    register_link, // DB column name se match kar diya
+    drive_link    // DB column name se match kar diya
 }) => {
     const timeLeft = useCountdown(date, month, year, time)
 
@@ -101,12 +103,26 @@ const EventCard = ({
                         <div className={`Status ${status}`}>
                             Status: {status === "upcoming" ? "UPCOMING" : "DONE"}
                         </div>
+                        
+                        {/* Yahan register_link use ho raha hai */}
                         {status === "upcoming" ? (
-                            <a href={registerLink || '#'} target="_blank" rel="noopener noreferrer" className="RSVP-Btn" style={{textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <a 
+                                href={register_link && register_link !== "" ? register_link : "#"} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="RSVP-Btn" 
+                                style={{textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center'}}
+                            >
                                 Register
                             </a>
                         ) : (
-                            <a href={driveLink || '#'} target="_blank" rel="noopener noreferrer" className="RSVP-Btn" style={{textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#10b981'}}>
+                            <a 
+                                href={drive_link && drive_link !== "" ? drive_link : "#"} 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="RSVP-Btn" 
+                                style={{textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#10b981'}}
+                            >
                                 Event Photos
                             </a>
                         )}

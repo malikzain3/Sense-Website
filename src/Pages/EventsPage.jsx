@@ -29,7 +29,10 @@ const EventsPage = () => {
         <div className="events-grid">
           {events.map((item, i) => (
             <div key={item.id} className="card-wrapper flex justify-center" style={{ "--card-i": i }}>
-              <EventCard {...item} />
+              <EventCard
+                {...item}
+                image={item.image_url} // Ye line add karen: image_url ko 'image' prop mein convert karne ke liye
+              />
             </div>
           ))}
         </div>
