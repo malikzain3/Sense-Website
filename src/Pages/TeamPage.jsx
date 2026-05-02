@@ -24,7 +24,7 @@ const TeamPage = () => {
     <div className='team-page-wrapper' style={{paddingTop: '120px'}}>
       <div className="team-section">
         <h2 className="section-title">Executive <span>Cabinet</span></h2>
-        <div className="Team-Member" style={{flexWrap: 'wrap'}}>
+        <div className="team-grid-container">
           {cabinet.map((member) => (
             <div key={member.id} className={`member-card-wrapper ${member.rank === '1' ? 'pres' : member.rank === '2' ? 'vp' : member.rank === '3' ? 'gs' : ''}`}>
               <TeamMemberInfo Image={member.image_url} Name={member.name} Designation={member.role} Category={member.category} />
@@ -37,7 +37,7 @@ const TeamPage = () => {
 
       <div className="team-section">
         <h2 className="section-title">Our <span>Core Team</span></h2>
-        <div className="Team-Member" style={{flexWrap: 'wrap'}}>
+        <div className="team-grid-container">
           {team.map((member) => (
             <div key={member.id} className="member-card-wrapper">
               <TeamMemberInfo Image={member.image_url} Name={member.name} Designation={member.role} Category={member.category} />

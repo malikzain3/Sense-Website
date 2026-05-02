@@ -1,58 +1,37 @@
-#TeamMemberInfo {
-    width: 250px;
+/* Main Card Style */
+.TeamMemberInfo-Card {
+    width: 100%; 
+    min-width: 250px;   
+    max-width: 320px; 
     background: #ffffff;
     padding: 15px;
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     border: 1px solid #eee;
-    margin: 10px; 
-    display: inline-block; 
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
-@media (max-width: 600px) {
-    #TeamMemberInfo {
-        width: 90%; 
-        max-width: 300px; 
-        margin: 15px auto; 
-        display: block;
-    }
-
-    .Team-Member-Image img {
-        height: 280px; 
-    }
-
-    .Team-Member-Name {
-        font-size: 20px; 
-    }
-}
-
-@media (min-width: 601px) and (max-width: 1024px) {
-    #TeamMemberInfo {
-        width: 220px; 
-        margin: 10px;
-    }
-}
-
-#TeamMemberInfo:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-}
-
+/* Image Responsive Settings */
 .Team-Member-Image img {
-    border-radius: 15px;
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: 300px; /* Fixed height for all images on PC */
+    object-fit: cover; /* Image kategi nahi, center se crop hogi */
+    border-radius: 15px;
     margin-bottom: 15px;
 }
 
+/* Text & Labels */
 .Team-Member-Name {
     display: flex;
     justify-content: center;
     font-size: 18px;
     font-weight: 600;
     color: #2d3436;
+    text-align: center;
 }
 
 .Team-Member-Designation {
@@ -60,6 +39,7 @@
     justify-content: center;
     font-size: 14px;
     color: #636e72;
+    text-align: center;
 }
 
 .Team-Member-Category {
@@ -78,29 +58,42 @@
     width: max-content;
 }
 
-.member-card-wrapper.pres #TeamMemberInfo {
-    background: #f0fbfc;
-    border-bottom: 5px solid #f59e0b;
+/* Hover Effect */
+.TeamMemberInfo-Card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.member-card-wrapper.pres .Team-Member-Name {
-    color: #f59e0b;
+/* --- Responsive Adjustments --- */
+
+/* Mobile Screens (600px and below) */
+@media (max-width: 600px) {
+    .TeamMemberInfo-Card {
+        max-width: 90%; /* Side gaps for mobile */
+    }
+    
+    .Team-Member-Image img {
+        height: 220px; /* Thoda chota image mobile ke liye */
+    }
+
+    .Team-Member-Name {
+        font-size: 20px;
+    }
 }
 
-.member-card-wrapper.vp #TeamMemberInfo {
-    background: #f0fbfc;
-    border-bottom: 5px solid #1dbbc3;
+/* Tablets (601px to 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .TeamMemberInfo-Card {
+        max-width: 280px; /* Tablet size fits better */
+    }
 }
 
-.member-card-wrapper.vp .Team-Member-Name {
-    color: #1dbbc3;
-}
+/* Specific Role Styling (Kept as is) */
+.member-card-wrapper.pres .TeamMemberInfo-Card { background: #f0fbfc; border-bottom: 5px solid #f59e0b; }
+.member-card-wrapper.pres .Team-Member-Name { color: #f59e0b; }
 
-.member-card-wrapper.gs #TeamMemberInfo {
-    background: #f0fbfc;
-    border-bottom: 5px solid #1dc325;
-}
+.member-card-wrapper.vp .TeamMemberInfo-Card { background: #f0fbfc; border-bottom: 5px solid #1dbbc3; }
+.member-card-wrapper.vp .Team-Member-Name { color: #1dbbc3; }
 
-.member-card-wrapper.gs .Team-Member-Name {
-    color: #1dc325;
-}
+.member-card-wrapper.gs .TeamMemberInfo-Card { background: #f0fbfc; border-bottom: 5px solid #1dc325; }
+.member-card-wrapper.gs .Team-Member-Name { color: #1dc325; }

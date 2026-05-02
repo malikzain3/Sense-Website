@@ -8,7 +8,7 @@ const TeamMemberInfo = ({
     Category
 }) => {
   return (
-    <div id='TeamMemberInfo'>
+    <div className='TeamMemberInfo-Card'>
         <div className="Team-Member-Image">
             <img src={Image} />
         </div>

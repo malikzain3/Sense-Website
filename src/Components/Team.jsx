@@ -1,14 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import TeamMemberInfo from './TeamMemberInfo'
-import teamData from "../teamData.js"
 import "./Team.css"
+import { supabase } from "../supabase";
 
 const Team = () => {
   const navigate = useNavigate();
-  
-  // Rank ke hisab se sort karke top 4 nikaal liye
-  const topFour = [...teamData].sort((a, b) => a.rank - b.rank).slice(0, 3);
+  const [topFour, setTopFour] = useState([]);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      const { data } = await supabase.from('team').select('*').order('rank', { ascending: true }).limit(3);
+      if (data) setTopFour(data);
+    };
+    fetchTeam();
+  }, []);
 
   return (
     <div id='Team'>
@@ -17,11 +23,11 @@ const Team = () => {
         <div className="Team-Text">Meet Our Prestigious Team</div>
         <div className="Team-Member">
           {topFour.map((member) => (
-            <div key={member.id} className={`member-card-wrapper ${member.rank === 1 ? 'pres' : member.rank === 2 ? 'vp' : member.rank === 3 ? 'gs' : ''}`}>
+            <div key={member.id} className={`member-card-wrapper ${member.rank === '1' ? 'pres' : member.rank === '2' ? 'vp' : member.rank === '3' ? 'gs' : ''}`}>
               <TeamMemberInfo 
-                Image={member.image}
+                Image={member.image_url}
                 Name={member.name}
-                Designation={member.designation}
+                Designation={member.role}
                 Category={member.category}
               />
             </div>

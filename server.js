@@ -5,7 +5,6 @@ require('dotenv').config()
 
 const app = express()
 
-// ── Middleware ───────────────────────────────────────────────────
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
@@ -13,12 +12,11 @@ app.use(cors({
 }))
 app.use(express.json())
 
-// ── MongoDB Connection ───────────────────────────────────────────
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('✅ Connected to MongoDB'))
     .catch(err => console.error('❌ MongoDB connection error:', err))
 
-// ── RSVP Schema ─────────────────────────────────────────────────
+// RSVP Schema (ONLY THIS)
 const rsvpSchema = new mongoose.Schema({
     eventId:      { type: String, required: true },
     eventTitle:   { type: String, required: true },
@@ -29,27 +27,24 @@ const rsvpSchema = new mongoose.Schema({
     university:   { type: String, default: '' },
     department:   { type: String, default: '' },
     semester:     { type: String, default: '' },
-    extraFields:  { type: Map, of: String, default: {} }, // stores any custom fields
+    extraFields:  { type: Map, of: String, default: {} },
     registeredAt: { type: Date, default: Date.now }
 })
 
-// Prevent duplicate registration: same student for same event
 rsvpSchema.index({ eventId: 1, email: 1 }, { unique: true })
 rsvpSchema.index({ eventId: 1, studentId: 1 }, { unique: true })
 
 const RSVP = mongoose.model('RSVP', rsvpSchema)
 
-// ── POST /api/rsvp ───────────────────────────────────────────────
+// RSVP endpoints only
 app.post('/api/rsvp', async (req, res) => {
     try {
         const { eventId, eventTitle, name, email, studentId, phone, university, department, semester, ...rest } = req.body
 
-        // Validate required fields
         if (!eventId || !eventTitle || !name || !email || !studentId) {
             return res.status(400).json({ message: 'Missing required fields.' })
         }
 
-        // Validate email format
         const emailRegex = /\S+@\S+\.\S+/
         if (!emailRegex.test(email)) {
             return res.status(400).json({ message: 'Invalid email address.' })
@@ -58,7 +53,7 @@ app.post('/api/rsvp', async (req, res) => {
         const rsvp = new RSVP({
             eventId, eventTitle, name, email, studentId,
             phone, university, department, semester,
-            extraFields: rest  // any custom fields get stored here
+            extraFields: rest
         })
         await rsvp.save()
 
@@ -66,7 +61,6 @@ app.post('/api/rsvp', async (req, res) => {
 
     } catch (err) {
         if (err.code === 11000) {
-            // Duplicate key error
             return res.status(409).json({ message: 'You are already registered for this event.' })
         }
         console.error(err)
@@ -74,7 +68,6 @@ app.post('/api/rsvp', async (req, res) => {
     }
 })
 
-// ── GET /api/rsvp/:eventId  (optional - view registrations) ──────
 app.get('/api/rsvp/:eventId', async (req, res) => {
     try {
         const registrations = await RSVP.find({ eventId: req.params.eventId })
@@ -86,6 +79,5 @@ app.get('/api/rsvp/:eventId', async (req, res) => {
     }
 })
 
-// ── Start Server ─────────────────────────────────────────────────
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`))

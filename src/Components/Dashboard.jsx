@@ -3,13 +3,15 @@ import "./Dashboard.css";
 import toast from "react-hot-toast";
 import { supabase } from "../supabase";
 
+
+
 const Dashboard = () => {
 
   useEffect(() => {
     const checkSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       if (!session) {
-        toast.error("Pehle Login karo bhai!");
+        toast.error("Login First!");
         window.location.href = '/LoginPage';
       }
     };
@@ -20,6 +22,11 @@ const Dashboard = () => {
   const [gallery, setGallery] = useState([]);
   const [team, setTeam] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Track original state
+  const [baselineEvents, setBaselineEvents] = useState([]);
+  const [baselineGallery, setBaselineGallery] = useState([]);
+  const [baselineTeam, setBaselineTeam] = useState([]);
 
   const [showForm, setShowForm] = useState(false);
   const [showTeamForm, setShowTeamForm] = useState(false);
@@ -36,7 +43,7 @@ const Dashboard = () => {
     name: "", role: "", image_url: "", category: "Cabinet", rank: "3",
   });
 
-  // --- Fetch all data ---
+  // Fetch all data
   useEffect(() => {
     fetchAll();
   }, []);
@@ -48,9 +55,19 @@ const Dashboard = () => {
       supabase.from('gallery').select('*').order('created_at', { ascending: false }),
       supabase.from('team').select('*').order('rank', { ascending: true }),
     ]);
-    if (ev.data) setEvents(ev.data);
-    if (gal.data) setGallery(gal.data);
-    if (tm.data) setTeam(tm.data);
+
+    if (ev.data) {
+      setEvents(ev.data);
+      setBaselineEvents(JSON.parse(JSON.stringify(ev.data)));
+    }
+    if (gal.data) {
+      setGallery(gal.data);
+      setBaselineGallery(JSON.parse(JSON.stringify(gal.data)));
+    }
+    if (tm.data) {
+      setTeam(tm.data);
+      setBaselineTeam(JSON.parse(JSON.stringify(tm.data)));
+    }
     setLoading(false);
   };
 
@@ -69,13 +86,19 @@ const Dashboard = () => {
     }
   }, [showForm, showTeamForm]);
 
+  // Check if data changed
+  const hasChanges =
+    JSON.stringify(events) !== JSON.stringify(baselineEvents) ||
+    JSON.stringify(gallery) !== JSON.stringify(baselineGallery) ||
+    JSON.stringify(team) !== JSON.stringify(baselineTeam);
+
   // --- Event Handlers ---
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
     const fileName = `events/${Date.now()}_${file.name}`;
     const { error } = await supabase.storage.from('Images').upload(fileName, file);
-    if (error) { toast.error("Image upload failed!"); return; }
+    if (error) { toast.error("Image upload failed!"); console.error(error); return; }
     const { data } = supabase.storage.from('Images').getPublicUrl(fileName);
     setFormData(prev => ({ ...prev, image_url: data.publicUrl }));
     toast.success("Image uploaded! 📸");
@@ -84,22 +107,22 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isEditing) {
-      const { error } = await supabase.from('events').update(formData).eq('id', currentId);
-      if (error) { toast.error("Update failed!"); return; }
-      toast.success("Event updated! ✨");
+      setEvents(events.map(ev => ev.id === currentId ? { ...formData, id: currentId } : ev));
+      toast.success("Event added!");
+      setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
     } else {
-      const { error } = await supabase.from('events').insert([formData]);
-      if (error) { toast.error("Add failed!"); return; }
-      toast.success("Event added! 🚀");
+      const newEvent = { ...formData, id: Date.now() };
+      setEvents([newEvent, ...events]);
+      toast.success("Event added!");
+      setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
     }
     closeForm();
-    fetchAll();
   };
 
-  const handleDeleteEvent = async (id) => {
-    await supabase.from('events').delete().eq('id', id);
-    toast.success("Event deleted!");
-    fetchAll();
+  const handleDeleteEvent = (id) => {
+    setEvents(events.filter(ev => ev.id !== id));
+    toast.success("Event removed!");
+    setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
   };
 
   // --- Gallery Handlers ---
@@ -108,18 +131,18 @@ const Dashboard = () => {
     if (!file) return;
     const fileName = `gallery/${Date.now()}_${file.name}`;
     const { error } = await supabase.storage.from('Images').upload(fileName, file);
-    if (error) { toast.error("Upload failed!"); return; }
+    if (error) { toast.error("Upload failed!"); console.error(error); return; }
     const { data } = supabase.storage.from('Images').getPublicUrl(fileName);
-    const { error: dbError } = await supabase.from('gallery').insert([{ image_url: data.publicUrl }]);
-    if (dbError) { toast.error("Save failed!"); return; }
-    toast.success("Photo added! 🖼️");
-    fetchAll();
+    const newPhoto = { id: Date.now(), image_url: data.publicUrl, caption: '' };
+    setGallery([newPhoto, ...gallery]);
+    toast.success("Photo added!");
+    setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
   };
 
-  const handleDeleteGallery = async (id) => {
-    await supabase.from('gallery').delete().eq('id', id);
-    toast.success("Photo deleted!");
-    fetchAll();
+  const handleDeleteGallery = (id) => {
+    setGallery(gallery.filter(g => g.id !== id));
+    toast.success("Photo removed!");
+    setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
   };
 
   // --- Team Handlers ---
@@ -128,7 +151,7 @@ const Dashboard = () => {
     if (!file) return;
     const fileName = `team/${Date.now()}_${file.name}`;
     const { error } = await supabase.storage.from('Images').upload(fileName, file);
-    if (error) { toast.error("Upload failed!"); return; }
+    if (error) { toast.error("Upload failed!"); console.error(error); return; }
     const { data } = supabase.storage.from('Images').getPublicUrl(fileName);
     setTeamFormData(prev => ({ ...prev, image_url: data.publicUrl }));
     toast.success("Photo uploaded! 📸");
@@ -137,22 +160,22 @@ const Dashboard = () => {
   const handleTeamSubmit = async (e) => {
     e.preventDefault();
     if (isEditing) {
-      const { error } = await supabase.from('team').update(teamFormData).eq('id', currentId);
-      if (error) { toast.error("Update failed!"); return; }
-      toast.success("Member updated! ✨");
+      setTeam(team.map(m => m.id === currentId ? { ...teamFormData, id: currentId } : m));
+      toast.success("Member updated!");
+      setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
     } else {
-      const { error } = await supabase.from('team').insert([teamFormData]);
-      if (error) { toast.error("Add failed!"); return; }
-      toast.success("Member added! 🚀");
+      const newMember = { ...teamFormData, id: Date.now() };
+      setTeam([newMember, ...team]);
+      toast.success("Member added!");
+      setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
     }
     closeTeamForm();
-    fetchAll();
   };
 
-  const handleDeleteTeam = async (id) => {
-    await supabase.from('team').delete().eq('id', id);
-    toast.success("Member deleted!");
-    fetchAll();
+  const handleDeleteTeam = (id) => {
+    setTeam(team.filter(m => m.id !== id));
+    toast.success("Member removed!");
+    setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
   };
 
   const closeForm = () => {
@@ -165,11 +188,91 @@ const Dashboard = () => {
     setTeamFormData({ name: "", role: "", image_url: "", category: "Cabinet", rank: "3" });
   };
 
-  if (loading) return <div style={{textAlign:'center', padding:'100px', fontSize:'24px'}}>Loading... ⏳</div>;
+  // SAVE TO DATABASE
+  const handleGlobalSave = async () => {
+    const loadingToast = toast.loading("Saving changes...");
+    try {
+      // EVENTS
+      const eventsToAdd = events.filter(e => !baselineEvents.some(b => b.id === e.id))
+        .map(({ id, created_at, ...rest }) => rest);
+
+      const eventsToUpdate = events.filter(e => baselineEvents.some(b => b.id === e.id && JSON.stringify(e) !== JSON.stringify(b)))
+        .map(({ created_at, ...rest }) => rest);
+
+      const eventsToDelete = baselineEvents.filter(b => !events.some(e => e.id === b.id));
+
+      if (eventsToAdd.length > 0) {
+        const { error } = await supabase.from('events').insert(eventsToAdd);
+        if (error) throw error;
+      }
+      for (const ev of eventsToUpdate) {
+        const { error } = await supabase.from('events').update(ev).eq('id', ev.id);
+        if (error) throw error;
+      }
+      if (eventsToDelete.length > 0) {
+        const { error } = await supabase.from('events').delete().in('id', eventsToDelete.map(e => e.id));
+        if (error) throw error;
+      }
+
+      // TEAM
+      const teamToAdd = team.filter(t => !baselineTeam.some(b => b.id === t.id))
+        .map(({ id, created_at, ...rest }) => rest);
+      const teamToUpdate = team.filter(t => baselineTeam.some(b => b.id === t.id && JSON.stringify(t) !== JSON.stringify(b)))
+        .map(({ created_at, ...rest }) => rest);
+      const teamToDelete = baselineTeam.filter(b => !team.some(t => t.id === b.id));
+
+      if (teamToAdd.length > 0) {
+        const { error } = await supabase.from('team').insert(teamToAdd);
+        if (error) throw error;
+      }
+      for (const tm of teamToUpdate) {
+        const { error } = await supabase.from('team').update(tm).eq('id', tm.id);
+        if (error) throw error;
+      }
+      if (teamToDelete.length > 0) {
+        const { error } = await supabase.from('team').delete().in('id', teamToDelete.map(t => t.id));
+        if (error) throw error;
+      }
+
+      // GALLERY
+      const galleryToAdd = gallery.filter(g => !baselineGallery.some(b => b.id === g.id))
+        .map(({ id, created_at, ...rest }) => rest);
+      const galleryToDelete = baselineGallery.filter(b => !gallery.some(g => g.id === b.id));
+
+      if (galleryToAdd.length > 0) {
+        const { error } = await supabase.from('gallery').insert(galleryToAdd);
+        if (error) throw error;
+      }
+      if (galleryToDelete.length > 0) {
+        const { error } = await supabase.from('gallery').delete().in('id', galleryToDelete.map(g => g.id));
+        if (error) throw error;
+      }
+
+      // Refresh data completely from server
+      await fetchAll();
+      toast.success("✅ All changes saved!", { id: loadingToast });
+
+    } catch (error) {
+      console.error("Save error:", error);
+      toast.error("Save failed! " + (error.message || "Unknown error"), { id: loadingToast });
+    }
+  };
+
+  if (loading) return <div style={{ textAlign: 'center', padding: '100px', fontSize: '24px' }}>Loading... ⏳</div>;
 
   return (
-    
     <div className="dashboard-wrapper">
+
+      {/* SAVE BUTTON */}
+      <div className="global-save-container">
+        <button
+          className="global-save-btn"
+          disabled={!hasChanges}
+          onClick={handleGlobalSave}
+        >
+          <span className="save-icon">💾</span> {hasChanges ? "SAVE CHANGES" : "No Changes"}
+        </button>
+      </div>
 
       {/* 1. EVENTS SECTION */}
       <div className="dashboard-section">
@@ -271,7 +374,7 @@ const Dashboard = () => {
               </div>
               <div className="form-group">
                 <label>Description</label>
-                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows="2" style={{width:'100%',padding:'10px',borderRadius:'8px',border:'2px solid #edf2f7'}} required />
+                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows="2" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '2px solid #edf2f7' }} required />
               </div>
               <div className="form-row">
                 <div className="input-box">
@@ -321,7 +424,7 @@ const Dashboard = () => {
                   <input type="file" id="ev-file" hidden accept="image/*" onChange={handleImageUpload} />
                 </div>
               </div>
-              <button type="submit" className="submit-btn">SAVE EVENT</button>
+              <button type="submit" className="submit-btn">ADD TO MEMORY</button>
             </form>
           </div>
         </div>
@@ -359,7 +462,7 @@ const Dashboard = () => {
                   <input type="file" id="tm-file" hidden accept="image/*" onChange={handleTeamImage} />
                 </div>
               </div>
-              <button type="submit" className="submit-btn">SAVE MEMBER</button>
+              <button type="submit" className="submit-btn">ADD TO MEMORY</button>
             </form>
           </div>
         </div>

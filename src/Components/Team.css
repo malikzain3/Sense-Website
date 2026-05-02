@@ -1,13 +1,13 @@
-
-body{
+body {
     overflow-x: hidden;
 }
-#Team{
+
+#Team {
     background-color: #fff;
     padding: 50px 70px;
 }
 
-.Team-Heading{
+.Team-Heading {
     font-size: 2.8rem;
     font-weight: 800;
     color: #0f4c4e;
@@ -17,8 +17,9 @@ body{
     text-transform: uppercase;
     letter-spacing: 2px;
 }
-.Team-Heading:After{
-     content: '';
+
+.Team-Heading:After {
+    content: '';
     display: block;
     width: 80px;
     height: 4px;
@@ -27,7 +28,7 @@ body{
     border-radius: 2px;
 }
 
-.Team-Text{
+.Team-Text {
     font-size: 1.15rem;
     color: #555;
     text-align: center;
@@ -37,22 +38,35 @@ body{
     font-weight: 400;
 }
 
-.Team-Member{
+.Team-Member {
     display: flex;
-    gap: 50px;
+    gap: 30px; /* PC par gap thoda kam rakhein taake 4 cards fit ayein */
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1400px; /* Container ki limit */
+    margin: 0 auto;
+}
+
+.member-card-wrapper {
+    /* Desktop par 4 cards ke liye 22-25% width best hai */
+    flex: 1 1 280px; 
+    max-width: 320px;
+    display: flex;
     justify-content: center;
 }
-.More-Team-Button{
-  display: flex;
+
+.More-Team-Button {
+    display: flex;
     justify-content: center;
     margin-top: 40px;
     margin-bottom: 20px;
 }
 
-.More-Team-Button Button{
+.More-Team-Button Button {
     background-color: #d3f2f3;
-    border: 1.5px solid #1dbbc3; 
-    color: #0f4c4e; 
+    border: 1.5px solid #1dbbc3;
+    color: #0f4c4e;
     padding: 12px 32px;
     border-radius: 50px;
     font-size: 16px;
@@ -66,47 +80,66 @@ body{
     box-shadow: 0 4px 15px rgba(29, 187, 195, 0.15);
 }
 
-.More-Team-Button button:hover{
+.More-Team-Button button:hover {
     background-color: #1dbbc3;
     color: white;
     border-color: #1dbbc3;
-    transform: translateY(-3px); 
+    transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(29, 187, 195, 0.3);
 }
 
 .More-Team-Button button:active {
-    transform: translateY(-1px); 
+    transform: translateY(-1px);
 }
+
 @media (max-width: 768px) {
     #Team {
-        padding: 40px 20px; /* Padding kam kar di taaki side se space bache */
+        padding: 40px 20px;
     }
 
     .Team-Heading {
-        font-size: 32px; /* Heading thodi choti kar di */
+        font-size: 32px;
     }
+
+    /* --- FIX STARTS HERE --- */
+    .Team-Member {
+        display: flex;
+        flex-direction: column;
+        /* Isse cards ek ke niche ek ayenge */
+        align-items: center;
+        /* Cards ko center alignment dega */
+        gap: 25px;
+        /* Cards ke darmiyan gap */
+    }
+
+    .member-card-wrapper {
+        width: 100%;
+        /* Wrapper ko full width do */
+        display: flex;
+        justify-content: center;
+    }
+
+    /* --- FIX ENDS HERE --- */
 
     .Team-Text {
         font-size: 18px;
         text-align: center;
     }
-
-    .Team-Member {
-        flex-direction: column; /* Items ek ke neeche ek aayenge */
-        align-items: center;    /* Center align karne ke liye */
-        gap: 30px;              /* Gap thoda kam kar diya */
-    }
 }
 
-/* Extra small devices (chote phones) ke liye */
+/* Chote phones ke liye mazeed safayi */
 @media (max-width: 480px) {
     .Team-Heading {
         font-size: 28px;
     }
-    
+
+    .Team-Member {
+        gap: 20px;
+    }
+
     .More-Team-Button Button {
-        padding: 10px 24px; /* Button ka size thoda handle kiya */
-        width: 100%;        /* Mobile par full width button aksar acha lagta hai */
+        padding: 10px 24px;
+        width: 100%;
         max-width: 250px;
     }
 }

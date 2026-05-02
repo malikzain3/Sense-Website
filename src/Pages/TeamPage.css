@@ -15,7 +15,9 @@
     color: #2d3436;
 }
 
-.team-header-section h1 span { color: #f59e0b; }
+.team-header-section h1 span {
+    color: #f59e0b;
+}
 
 /* President Featured Style */
 .president-featured-area {
@@ -32,7 +34,7 @@
     gap: 40px;
     padding: 40px;
     border-radius: 30px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
     max-width: 900px;
     border: 1px solid rgba(29, 187, 195, 0.2);
 }
@@ -42,7 +44,7 @@
     height: 250px;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .pres-img-box img {
@@ -89,6 +91,7 @@
     gap: 40px;
     padding: 0 5% 80px;
 }
+
 /* Page Level Styling */
 .section-title {
     font-size: 42px;
@@ -110,15 +113,63 @@
     width: 80%;
     margin: 60px auto;
 }
+
 /* Mobile Responsive */
+/* Mobile Responsive Fixes */
 @media (max-width: 768px) {
+    /* Header adjust */
+    .team-header-section h1 {
+        font-size: 32px;
+        padding: 0 15px;
+    }
+
+    .section-title {
+        font-size: 30px;
+    }
+
+    /* President Card Fix */
     .president-card {
         flex-direction: column;
         text-align: center;
+        padding: 25px;
+        width: 90%; /* Fixed: 200px se hata kar wide kar diya */
+        max-width: 400px;
+        margin: 0 auto;
+        gap: 20px;
     }
+
     .pres-img-box {
         width: 180px;
         height: 180px;
     }
-    .team-header-section h1 { font-size: 35px; }
+
+    .pres-details h2 {
+        font-size: 24px;
+    }
+
+    /* Grid Fix: Force 1 Column on Mobile */
+    .team-grid-container {
+        flex-direction: column; /* Cards ek ke neeche ek ayenge */
+        align-items: center;    /* Cards center mein rahenge */
+        gap: 30px;              /* Space between cards */
+        padding: 0 20px 60px;
+    }
+
+    /* Wrapper for each card to ensure full width alignment */
+    .member-card-wrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+/* Extra small devices (iPhone SE etc.) */
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 26px;
+    }
+    
+    .team-page-wrapper {
+        padding-top: 80px; /* Padding kam ki taake mobile pe bura na lage */
+    }
 }

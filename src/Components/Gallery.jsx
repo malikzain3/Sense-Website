@@ -1,17 +1,25 @@
-import React , { useRef, useState, useEffect, useCallback } from 'react'
+import React, { useRef, useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import "./Gallery.css"
 import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
-import img from "../assets/Pic.jpg"
-
-const images = [
-  img, img, img, img, img, img
-];
+import { supabase } from "../supabase";
 
 const Gallery = () => {
   const navigate = useNavigate();
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
+  const [images, setImages] = useState([]);
+
+  // Fetch gallery images from Supabase
+  useEffect(() => {
+    const fetchGallery = async () => {
+      const { data } = await supabase.from('gallery').select('*').limit(6).order('created_at', { ascending: false });
+      if (data) {
+        setImages(data.map(item => item.image_url));
+      }
+    };
+    fetchGallery();
+  }, []);
 
   // --- Scroll-based parallax ---
   const { scrollYProgress } = useScroll({
@@ -32,25 +40,23 @@ const Gallery = () => {
   const rafRef = useRef(null);
 
   // Triple the images for seamless infinite loop
-  const loopedImages = [...images, ...images, ...images];
+  const loopedImages = images.length > 0 ? [...images, ...images, ...images] : [];
 
   // Width of one full set of images (calculated once after mount)
   const singleSetWidthRef = useRef(0);
 
   useEffect(() => {
-    if (trackRef.current) {
+    if (trackRef.current && images.length > 0) {
       singleSetWidthRef.current = trackRef.current.scrollWidth / 3;
     }
-  }, []);
+  }, [images]);
 
   // Wrap dragX so it always stays within one set range (infinite loop)
   const wrapDragX = useCallback((value) => {
     const singleSetWidth = singleSetWidthRef.current;
     if (singleSetWidth === 0) return value;
 
-    // Modulo wrap: keeps value cycling within [-singleSetWidth, 0]
     let wrapped = value % singleSetWidth;
-    // Ensure it's always negative or zero for leftward consistency
     if (wrapped > 0) wrapped -= singleSetWidth;
     return wrapped;
   }, []);
@@ -86,7 +92,6 @@ const Gallery = () => {
     if (!isDragging) return;
     setIsDragging(false);
 
-    // Momentum with wrapping
     const decelerate = () => {
       velocityRef.current *= 0.95;
       if (Math.abs(velocityRef.current) > 0.5) {
@@ -136,11 +141,18 @@ const Gallery = () => {
     return () => cancelAnimationFrame(rafRef.current);
   }, []);
 
+  if (images.length === 0) {
+    return (
+      <div id='Gallery'>
+        <div className="Gallery-Heading">Gallery</div>
+        <p style={{textAlign:'center', padding:'50px'}}>Loading gallery...</p>
+      </div>
+    );
+  }
+
   return (
     <div id='Gallery'>
-      <div className="Gallery-Heading">
-        Gallery
-      </div>
+      <div className="Gallery-Heading">Gallery</div>
 
       <div
         ref={sectionRef}
@@ -162,15 +174,8 @@ const Gallery = () => {
           }}
         >
           {loopedImages.map((src, index) => (
-            <motion.div
-              key={index}
-              className="Gallery-Card"
-            >
-              <img
-                src={src}
-                alt={`img-${index}`}
-                draggable={false}
-              />
+            <motion.div key={index} className="Gallery-Card">
+              <img src={src} alt={`img-${index}`} draggable={false} />
             </motion.div>
           ))}
         </motion.div>
