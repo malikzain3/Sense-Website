@@ -247,8 +247,6 @@ const Dashboard = () => {
         const { error } = await supabase.from('gallery').delete().in('id', galleryToDelete.map(g => g.id));
         if (error) throw error;
       }
-
-      // Refresh data completely from server
       await fetchAll();
       toast.success("✅ All changes saved!", { id: loadingToast });
 
