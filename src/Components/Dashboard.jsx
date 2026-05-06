@@ -107,11 +107,12 @@ const Dashboard = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isEditing) {
-      setEvents(events.map(ev => ev.id === currentId ? { ...formData, id: currentId } : ev));
-      toast.success("Event added!");
+      // Preserve original created_at so the event stays in its current position
+      setEvents(events.map(ev => ev.id === currentId ? { ...formData, id: currentId, created_at: ev.created_at } : ev));
+      toast.success("Event updated!");
       setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
     } else {
-      const newEvent = { ...formData, id: Date.now() };
+      const newEvent = { ...formData, id: Date.now(), created_at: new Date().toISOString() };
       setEvents([newEvent, ...events]);
       toast.success("Event added!");
       setTimeout(() => { toast.success(" Click SAVE to confirm"); }, 2000);
