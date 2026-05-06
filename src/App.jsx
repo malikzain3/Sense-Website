@@ -20,7 +20,6 @@ import ContactPage from "./Pages/ContactPage";
 import NotFound from "./Pages/NotFound.jsx";
 import TermsAndConditions from './Pages/TermsAndConditions'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
-import RSVPPage from "./Pages/RSVPPage";
 
 function HomePage() {
   const homeRef = useRef(null);
@@ -38,7 +37,6 @@ function HomePage() {
       <About />
       <Events />
       <Gallery />
-      <RSVPPage/>
       <Team />
     </div>
   );
