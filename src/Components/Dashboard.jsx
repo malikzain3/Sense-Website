@@ -2,20 +2,67 @@ import React, { useState, useEffect } from "react";
 import "./Dashboard.css";
 import toast from "react-hot-toast";
 import { supabase } from "../supabase";
+import EventModal from "./EventModal";
+import TeamModal from "./TeamModal";
 
 
 
 const Dashboard = () => {
 
+  const SESSION_DURATION = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Block rendering until verified
+
+  const forceLogout = async (message) => {
+    localStorage.removeItem('loginTime');
+    await supabase.auth.signOut();
+    toast.error(message || "Session expired! Please login again.");
+    window.location.href = '/LoginPage';
+  };
+
   useEffect(() => {
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        toast.error("Login First!");
-        window.location.href = '/LoginPage';
+    const verifySession = async () => {
+      // 1. SERVER-SIDE token verification (not just local check)
+      const { data: { user }, error } = await supabase.auth.getUser();
+
+      if (error || !user) {
+        // Token is invalid, tampered, or expired on server
+        forceLogout("Unauthorized access! Please login.");
+        return;
       }
+
+      // 2. Check 2-hour fixed time expiry
+      const loginTime = parseInt(localStorage.getItem('loginTime') || '0');
+      const elapsed = Date.now() - loginTime;
+
+      if (!loginTime || elapsed >= SESSION_DURATION) {
+        forceLogout("Session expired! Please login again.");
+        return;
+      }
+
+      // 3. All checks passed — allow rendering
+      setIsAuthenticated(true);
+
+      // 4. Set a timer for the remaining time
+      const remaining = SESSION_DURATION - elapsed;
+      const expiryTimer = setTimeout(() => {
+        forceLogout("Session expired! Please login again.");
+      }, remaining);
+
+      return () => clearTimeout(expiryTimer);
     };
-    checkSession();
+    verifySession();
+
+    // 5. Listen for auth state changes (catches 401/403 from Supabase in real-time)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT' || event === 'TOKEN_REFRESHED') {
+        if (event === 'SIGNED_OUT') {
+          localStorage.removeItem('loginTime');
+          window.location.href = '/LoginPage';
+        }
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const [events, setEvents] = useState([]);
@@ -40,7 +87,7 @@ const Dashboard = () => {
   });
 
   const [teamFormData, setTeamFormData] = useState({
-    name: "", role: "", image_url: "", category: "Cabinet", rank: "3",
+    name: "", role: "", image_url: "", category: "", rank: "",
   });
 
   // Fetch all data
@@ -186,7 +233,7 @@ const Dashboard = () => {
 
   const closeTeamForm = () => {
     setShowTeamForm(false); setIsEditing(false);
-    setTeamFormData({ name: "", role: "", image_url: "", category: "Cabinet", rank: "3" });
+    setTeamFormData({ name: "", role: "", image_url: "", category: "", rank: "" });
   };
 
   // SAVE TO DATABASE
@@ -257,7 +304,32 @@ const Dashboard = () => {
     }
   };
 
+  // SECURITY GATE: Block ALL rendering until auth is verified server-side
+  if (!isAuthenticated) return <div style={{ textAlign: 'center', padding: '100px', fontSize: '24px' }}>Verifying access... 🔐</div>;
+
   if (loading) return <div style={{ textAlign: 'center', padding: '100px', fontSize: '24px' }}>Loading... ⏳</div>;
+
+  // Sorting Logic for Events
+  const sortedEvents = [...events].sort((a, b) => {
+    const dateA = new Date(`${a.month} ${a.date}, ${a.year}`).getTime() || 0;
+    const dateB = new Date(`${b.month} ${b.date}, ${b.year}`).getTime() || 0;
+    
+    const isAUpcoming = a.status?.toLowerCase() === 'upcoming';
+    const isBUpcoming = b.status?.toLowerCase() === 'upcoming';
+
+    // 1. Group by status: Upcoming first, Done last
+    if (isAUpcoming && !isBUpcoming) return -1;
+    if (!isAUpcoming && isBUpcoming) return 1;
+
+    // 2. Sort within groups
+    if (isAUpcoming) {
+      // Upcoming: Ascending (closest date first)
+      return dateA - dateB;
+    } else {
+      // Past/Done: Descending (most recent past first)
+      return dateB - dateA;
+    }
+  });
 
   return (
     <div className="dashboard-wrapper">
@@ -280,7 +352,7 @@ const Dashboard = () => {
           <button className="add-main-btn" onClick={() => setShowForm(true)}>+ Add Event</button>
         </div>
         <div className="dashboard-grid">
-          {events.map((ev) => (
+          {sortedEvents.map((ev) => (
             <div key={ev.id} className="dash-event-card">
               <div className="card-img-container">
                 <img src={ev.image_url || "https://via.placeholder.com/300x180"} alt="" />
@@ -362,109 +434,26 @@ const Dashboard = () => {
 
       {/* EVENT MODAL */}
       {showForm && (
-        <div className="modal-overlay">
-          <div className="dashboard-card" onClick={(e) => e.stopPropagation()}>
-            <button className="close-btn" onClick={closeForm}>✕</button>
-            <h2 className="modal-title">{isEditing ? "Edit" : "Add"} <span>Event</span></h2>
-            <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label>Title</label>
-                <input value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })} required />
-              </div>
-              <div className="form-group">
-                <label>Description</label>
-                <textarea value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} rows="2" style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '2px solid #edf2f7' }} required />
-              </div>
-              <div className="form-row">
-                <div className="input-box">
-                  <label>Date</label>
-                  <input placeholder="20" value={formData.date} onChange={(e) => setFormData({ ...formData, date: e.target.value })} required />
-                </div>
-                <div className="input-box">
-                  <label>Month</label>
-                  <input placeholder="Dec" value={formData.month} onChange={(e) => setFormData({ ...formData, month: e.target.value })} required />
-                </div>
-                <div className="input-box">
-                  <label>Year</label>
-                  <input placeholder="2026" value={formData.year} onChange={(e) => setFormData({ ...formData, year: e.target.value })} />
-                </div>
-                <div className="input-box">
-                  <label>Status</label>
-                  <select value={formData.status} onChange={(e) => setFormData({ ...formData, status: e.target.value })} className="status-select">
-                    <option value="upcoming">Upcoming</option>
-                    <option value="done">Done</option>
-                  </select>
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="input-box">
-                  <label>Time</label>
-                  <input placeholder="11:00 AM" value={formData.time} onChange={(e) => setFormData({ ...formData, time: e.target.value })} required />
-                </div>
-                <div className="input-box">
-                  <label>Venue</label>
-                  <input placeholder="Hall 1" value={formData.venue} onChange={(e) => setFormData({ ...formData, venue: e.target.value })} required />
-                </div>
-              </div>
-              <div className="form-row">
-                <div className="input-box">
-                  <label>Registration Link</label>
-                  <input placeholder="https://forms.gle/..." value={formData.register_link || ''} onChange={(e) => setFormData({ ...formData, register_link: e.target.value })} />
-                </div>
-                <div className="input-box">
-                  <label>Drive Link</label>
-                  <input placeholder="https://drive.google.com/..." value={formData.drive_link || ''} onChange={(e) => setFormData({ ...formData, drive_link: e.target.value })} />
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Event Image</label>
-                <div className="professional-upload-area" onClick={() => document.getElementById("ev-file").click()}>
-                  {formData.image_url ? <div className="preview-container"><img src={formData.image_url} alt="preview" /></div> : <p>Click to Upload Banner</p>}
-                  <input type="file" id="ev-file" hidden accept="image/*" onChange={handleImageUpload} />
-                </div>
-              </div>
-              <button type="submit" className="submit-btn">ADD TO MEMORY</button>
-            </form>
-          </div>
-        </div>
+        <EventModal
+          isEditing={isEditing}
+          closeForm={closeForm}
+          handleSubmit={handleSubmit}
+          formData={formData}
+          setFormData={setFormData}
+          handleImageUpload={handleImageUpload}
+        />
       )}
 
       {/* TEAM MODAL */}
       {showTeamForm && (
-        <div className="modal-overlay">
-          <div className="dashboard-card">
-            <button className="close-btn" onClick={closeTeamForm}>✕</button>
-            <h2 className="modal-title">{isEditing ? "Edit" : "Add"} <span>Member</span></h2>
-            <form onSubmit={handleTeamSubmit}>
-              <div className="form-group">
-                <label>Name</label>
-                <input value={teamFormData.name} onChange={(e) => setTeamFormData({ ...teamFormData, name: e.target.value })} required />
-              </div>
-              <div className="form-group">
-                <label>Designation</label>
-                <input value={teamFormData.role} onChange={(e) => setTeamFormData({ ...teamFormData, role: e.target.value })} required />
-              </div>
-              <div className="form-row">
-                <select value={teamFormData.category} onChange={(e) => setTeamFormData({ ...teamFormData, category: e.target.value })} className="status-select">
-                  <option value="Cabinet">Cabinet</option>
-                  <option value="Team">Team Member</option>
-                </select>
-                <select value={teamFormData.rank} onChange={(e) => setTeamFormData({ ...teamFormData, rank: e.target.value })} className="status-select">
-                  <option value="1">Rank 1 (President)</option>
-                  <option value="2">Rank 2 (Vice President)</option>
-                  <option value="3">Rank 3 (Member)</option>
-                </select>
-              </div>
-              <div className="form-group">
-                <div className="professional-upload-area" onClick={() => document.getElementById("tm-file").click()}>
-                  {teamFormData.image_url ? <div className="preview-container"><img src={teamFormData.image_url} alt="preview" /></div> : <p>Click to Upload Photo</p>}
-                  <input type="file" id="tm-file" hidden accept="image/*" onChange={handleTeamImage} />
-                </div>
-              </div>
-              <button type="submit" className="submit-btn">ADD TO MEMORY</button>
-            </form>
-          </div>
-        </div>
+        <TeamModal
+          isEditing={isEditing}
+          closeForm={closeTeamForm}
+          handleSubmit={handleTeamSubmit}
+          formData={teamFormData}
+          setFormData={setTeamFormData}
+          handleImageUpload={handleTeamImage}
+        />
       )}
 
     </div>

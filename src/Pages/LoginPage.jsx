@@ -10,6 +10,20 @@ const LoginPage = () => {
 
 
   useEffect(() => {
+    // Check if already logged in (SERVER-SIDE verification)
+    const checkExistingSession = async () => {
+      const { data: { user }, error } = await supabase.auth.getUser();
+      const loginTime = parseInt(localStorage.getItem('loginTime') || '0');
+      const elapsed = Date.now() - loginTime;
+      const SESSION_DURATION = 2 * 60 * 60 * 1000;
+
+      if (!error && user && loginTime && elapsed < SESSION_DURATION) {
+        toast.success("You are already logged in! 🔒");
+        window.location.href = '/Dashboard';
+      }
+    };
+    checkExistingSession();
+
     // Tilt animation logic
     if (window.$ && window.$.fn && window.$.fn.tilt) {
       window.$(".js-tilt").tilt({ scale: 1.1 });
@@ -27,6 +41,8 @@ const LoginPage = () => {
   if (error) {
     toast.error("Email ya password galat hai!");
   } else {
+    // Save login timestamp for 2-hour session expiry
+    localStorage.setItem('loginTime', Date.now().toString());
     toast.success("Welcome Back, Admin! 👋");
     setTimeout(() => {
       window.location.href = "/Dashboard";

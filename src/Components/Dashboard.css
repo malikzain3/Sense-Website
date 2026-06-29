@@ -1,9 +1,6 @@
 .dashboard-card, .dashboard-card * {
   box-sizing: border-box;
 }
-body.modal-open {
-  overflow: hidden !important;
-}
 .dashboard-wrapper {
   padding: 180px 5% 50px;
   background: linear-gradient(
@@ -182,198 +179,7 @@ body.modal-open {
   background: #fb5a58;
 }
 
-/* --- Modal & Scroll Fix (Importat Updates) --- */
-.modal-overlay {
-  position: fixed !important;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
-  display: flex !important;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: 999999;
-  padding: 40px 20px;
-  overflow-y: scroll;
-  overscroll-behavior: contain;
-}
-
-.dashboard-card {
-  background: white;
-  width: 100%;
-  max-width: 550px;
-  border-radius: 24px;
-  position: relative;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-  margin: auto;
-  flex-shrink: 0;
-}
-
-.dashboard-card form {
-  padding: 0 30px 30px 30px;
-  flex: 1;
-}
-.dashboard-card * {
-  box-sizing: border-box;  /* Taake koi bhi input card se bahar na nikalay */
-}
-
-/* Custom Scrollbar for Modal */
-.dashboard-card::-webkit-scrollbar {
-  width: 6px;
-}
-.dashboard-card form::-webkit-scrollbar {
-  width: 6px;
-}
-.dashboard-card::-webkit-scrollbar-thumb {
-  background: #f59e0b;
-  border-radius: 10px;
-}
-.dashboard-card form::-webkit-scrollbar-thumb {
-  background: #f59e0b;
-  border-radius: 10px;
-}
-
-@keyframes popIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.close-btn {
-  position: absolute !important;
-  top: 20px !important;
-  right: 20px !important;
-  background: #f1f2f6 !important;
-  border: none !important;
-  width: 35px !important;
-  height: 35px !important;
-  border-radius: 50% !important;
-  cursor: pointer !important;
-  font-weight: bold !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  transition: 0.3s !important;
-  z-index: 1000 !important;
-}
-.file-upload-box {
-  border: 2px dashed #edf2f7;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  background: #f9f9f9;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.file-upload-box:hover {
-  border-color: #f59e0b;
-  background: #fffcf5;
-}
-
-.upload-label {
-  display: block;
-  cursor: pointer;
-  font-weight: 700;
-  color: #f59e0b;
-  font-size: 0.9rem;
-}
-
-.upload-preview {
-  width: 100px;
-  height: 60px;
-  object-fit: cover;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 2px solid #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.close-btn:hover {
-  background: #dfe4ea;
-  transform: rotate(90deg);
-}
-
-.modal-title {
-  padding: 30px 30px 10px 30px;
-  margin: 0;
-  background: white;
-  z-index: 10;
-}
-.modal-title span {
-  color: #f59e0b;
-}
-
-.form-group {
-  margin-bottom: 18px;
-}
-.form-group label {
-  display: block;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #2d3436;
-  font-size: 0.9rem;
-}
-.form-group input, 
-.form-group textarea, 
-.status-select {
-  width: 100% !important; /* Boundary se bahar jane ka chance hi nahi */
-  max-width: 100%;
-}
-
-.form-group input:focus,
-.status-select:focus,
-textarea:focus {
-  border-color: #f59e0b;
-  background: #fffcf5;
-}
-
-.form-row {
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-  align-items: flex-end;
-}
-
-.input-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.input-box label {
-  font-size: 0.85rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #444;
-}
-.input-box input,
-.input-box .status-select {
-  width: 100%;
-  padding: 12px 15px;
-  border: 2px solid #edf2f7;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  height: 48px;
-  box-sizing: border-box;
-}
-.submit-btn {
-  width: 100%;
-  padding: 16px;
-  background: #f59e0b;
-  color: white;
-  border: none;
-  border-radius: 14px;
-  font-weight: 800;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
-  transition: 0.3s;
-  margin-top: 10px;
-}
+/* Modal styles extracted to Modal.css */
 .dashboard-section {
   margin-bottom: 80px;
 }
@@ -479,74 +285,7 @@ textarea:focus {
   font-size: 1.2rem;
 }
 
-.upload-preview {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-top: 10px;
-  border: 2px solid #f59e0b;
-}
-/* Professional Upload Box */
-.professional-upload-area {
-  border: 2px dashed #d1d8e0;
-  border-radius: 15px;
-  padding: 20px;
-  text-align: center;
-  background: #f8fafb;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 5px;
-}
-
-.professional-upload-area:hover {
-  border-color: #f59e0b;
-  background: #fffcf5;
-}
-
-.upload-placeholder .upload-icon {
-  font-size: 30px;
-  margin-bottom: 10px;
-}
-
-.upload-placeholder p {
-  font-weight: 700;
-  color: #2d3436;
-  margin: 0;
-}
-
-.upload-placeholder small {
-  color: #95a5a6;
-}
-
-.preview-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.preview-container img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%; /* Rounded DP look */
-  object-fit: cover;
-  border: 3px solid #f59e0b;
-}
-
-.preview-container span {
-  font-size: 12px;
-  font-weight: 700;
-  color: #f59e0b;
-  text-transform: uppercase;
-}
-
-/* Disabled State for Rank */
-select:disabled {
-  background: #f1f2f6 !important;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
+/* Upload preview and professional upload styles are in Modal.css */
 .section-divider {
   border: 0;
   height: 1px;
@@ -566,10 +305,7 @@ select:disabled {
 .control-btn:hover {
   transform: scale(1.15);
 }
-.submit-btn:hover {
-  background: #2d3436;
-  transform: translateY(-2px);
-}
+/* .submit-btn hover effect moved to Modal.css */
 
 /* Responsive */
 @media (max-width: 1024px) {
@@ -595,16 +331,7 @@ select:disabled {
   .dashboard-wrapper {
     padding-top: 140px;
   }
-  .dashboard-card{
-    padding: 20px;
-    width: 100%; 
-    margin: 0 auto;
-  }
-
-  .modal-overlay {
-    padding: 20px 10px;
-    width: 95%;
-  }
+/* Modal responsive styles moved to Modal.css */
 
   .global-save-container {
     bottom: 20px;

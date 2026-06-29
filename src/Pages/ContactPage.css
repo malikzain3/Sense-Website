@@ -29,7 +29,8 @@
 }
 
 .contact-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 40px;
   max-width: 1200px;
   margin: 0 auto;
@@ -38,7 +39,6 @@
 
 
 .contact-info-section {
-  flex: 1;
   background-color: #f9fbfb;
   padding: 30px;
   border-radius: 12px;
@@ -131,7 +131,6 @@
 
 /* ====== Right Column: Form ====== */
 .contact-form-section {
-  flex: 1;
   background: #ffffff;
   padding: 30px;
   border-radius: 12px;
@@ -201,8 +200,8 @@
 @media (max-width: 850px) {
     /* Container ko flex-direction: column dene se info aur form upar niche ho jayenge */
     .contact-container {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 30px; /* Dono blocks ke darmayan fasla */
         padding: 0 20px; /* Screen ke kinaro se padding di taake dabba chipke na */
         width: 100%;

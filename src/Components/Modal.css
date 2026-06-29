@@ -1,0 +1,335 @@
+/* --- Modal & Form Styles --- */
+.dashboard-card, .dashboard-card * {
+  box-sizing: border-box;
+}
+body.modal-open {
+  overflow: hidden !important;
+}
+
+.modal-overlay {
+  position:fixed !important;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.dashboard-card {
+  background: white;
+  width: 100%;
+  max-width: 1000px; /* equivalent to md:max-w-4xl/5xl */
+  border-radius: 24px;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  flex-shrink: 0;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-card form {
+  padding: 0 30px 30px 30px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.dashboard-card * {
+  box-sizing: border-box;
+}
+
+/* Custom Scrollbar for Modal */
+.dashboard-card::-webkit-scrollbar {
+  width: 6px;
+}
+.dashboard-card form::-webkit-scrollbar {
+  width: 6px;
+}
+.dashboard-card::-webkit-scrollbar-thumb {
+  background: #f59e0b;
+  border-radius: 10px;
+}
+.dashboard-card form::-webkit-scrollbar-thumb {
+  background: #f59e0b;
+  border-radius: 10px;
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.close-btn {
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  background: #f1f2f6 !important;
+  border: none !important;
+  width: 35px !important;
+  height: 35px !important;
+  border-radius: 50% !important;
+  cursor: pointer !important;
+  font-weight: bold !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: 0.3s !important;
+  z-index: 1000 !important;
+}
+
+.close-btn:hover {
+  background: #dfe4ea;
+  transform: rotate(90deg);
+}
+
+.modal-title {
+  padding: 30px 30px 10px 30px;
+  margin: 0;
+  background: white;
+  z-index: 10;
+  flex-shrink: 0;
+  border-radius: 24px 24px 0 0;
+}
+.modal-title span {
+  color: #f59e0b;
+}
+
+/* --- Form Styles --- */
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: #2d3436;
+  font-size: 0.9rem;
+}
+.form-group input, 
+.form-group textarea, 
+.status-select {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.form-group input:focus,
+.status-select:focus,
+textarea:focus {
+  border-color: #f59e0b;
+  background: #fffcf5;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: flex-end;
+}
+
+.input-box {
+  width: 60%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-box label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #444;
+}
+.input-box input,
+.input-box .status-select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #edf2f7;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  height: 48px;
+  box-sizing: border-box;
+}
+
+select:disabled,
+input:disabled {
+  background: #f1f2f6 !important;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: #f59e0b;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2);
+  transition: 0.3s;
+  margin-top: 10px;
+}
+.submit-btn:hover {
+  background: #2d3436;
+  transform: translateY(-2px);
+}
+
+/* File Upload within Modal */
+.file-upload-box {
+  border: 2px dashed #edf2f7;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.file-upload-box:hover {
+  border-color: #f59e0b;
+  background: #fffcf5;
+}
+
+.upload-label {
+  display: block;
+  cursor: pointer;
+  font-weight: 700;
+  color: #f59e0b;
+  font-size: 0.9rem;
+}
+
+.upload-preview {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 2px solid #f59e0b;
+}
+
+.professional-upload-area {
+  border: 2px dashed #d1d8e0;
+  border-radius: 15px;
+  height: 80px; /* Strict fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.professional-upload-area:hover {
+  border-color: #f59e0b;
+  background: #fffcf5;
+}
+
+.upload-placeholder .upload-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.upload-placeholder p {
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0;
+}
+
+.upload-placeholder small {
+  color: #95a5a6;
+}
+
+.preview-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.upload-success-state {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.upload-success-state img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px; /* Square with rounded corners */
+  border: 2px solid #10b981; /* Success Green */
+}
+
+.upload-success-state p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+/* Modal Responsive */
+@media (min-width: 769px) {
+  .dashboard-card {
+    overflow: hidden; /* Force modal to not scroll on desktop */
+  }
+
+  .dashboard-card form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    overflow: hidden; /* No vertical scrollbar allowed on desktop */
+    padding-bottom: 30px;
+    align-items: start; /* Fixes the massive vertical gap issue */
+  }
+
+  /* Reset margins for grid items */
+  .dashboard-card form > .form-group,
+  .dashboard-card form > .form-row {
+    margin-bottom: 0;
+  }
+
+  /* Make Title (1st) and Description (2nd) full width */
+  .dashboard-card form > .form-group:nth-child(1),
+  .dashboard-card form > .form-group:nth-child(2) {
+    grid-column: 1 / -1;
+  }
+  
+  /* Make the Submit button full width */
+  .dashboard-card form > .submit-btn {
+    grid-column: 1 / -1;
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0; /* Remove padding for full screen */
+  }
+
+  .dashboard-card {
+    width: 100%; 
+    max-width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    border-radius: 0; /* rounded-none */
+  }
+
+  .modal-title {
+    border-radius: 0;
+  }
+}

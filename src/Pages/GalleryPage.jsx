@@ -36,7 +36,7 @@ const GalleryPage = () => {
         <h1 className="page-title">OUR <span className="title-highlight">GALLERY</span></h1>
       </div>
       {photos.length === 0 ? (
-        <p style={{textAlign:'center', padding:'50px', color:'#666'}}>No photos yet. Upload from Dashboard!</p>
+        <p style={{textAlign:'center', padding:'50px', color:'#666'}}>Coming soon! Photos will appear here.</p>
       ) : (
         <div className="masonry-grid">
           {columns.map((column, colIndex) => (

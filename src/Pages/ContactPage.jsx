@@ -101,7 +101,7 @@ const ContactPage = () => {
           </div>
         </div>
 
-        <div className="contact-form-section">
+        <div className="-form-scontactection">
           <form onSubmit={handleSubmit} className="contact-form">
             <div className="form-group">
               <label htmlFor="name">Full Name</label>

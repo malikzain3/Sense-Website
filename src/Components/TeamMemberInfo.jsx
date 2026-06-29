@@ -20,7 +20,7 @@ const TeamMemberInfo = ({
         </div>
         {Category && (
             <div className="Team-Member-Category">
-                {Category === "Cabinet" ? "Cabinet Member" : "Core Team Member"}
+                {Category === "Cabinet" ? "Cabinet Member" : " Team Member"}
             </div>
         )}
     </div>
