@@ -27,7 +27,16 @@ const EventsPage = () => {
         <p className="no-events">No events found.</p>
       ) : (
         <div className="events-grid">
-          {events.map((item, i) => (
+          {[...events].sort((a, b) => {
+            const dateA = new Date(`${a.month} ${a.date}, ${a.year}`).getTime() || 0;
+            const dateB = new Date(`${b.month} ${b.date}, ${b.year}`).getTime() || 0;
+            const isAUpcoming = a.status?.toLowerCase() === 'upcoming';
+            const isBUpcoming = b.status?.toLowerCase() === 'upcoming';
+            if (isAUpcoming && !isBUpcoming) return -1;
+            if (!isAUpcoming && isBUpcoming) return 1;
+            if (isAUpcoming) return dateA - dateB;
+            return dateB - dateA;
+          }).map((item, i) => (
             <div key={item.id} className="card-wrapper flex justify-center" style={{ "--card-i": i }}>
               <EventCard
                 {...item}

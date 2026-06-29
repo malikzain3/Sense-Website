@@ -39,7 +39,16 @@ const Events = () => {
         {homeEvents.length === 0 ? (
           <p>No events to show.</p>
         ) : (
-          homeEvents.map((item) => (
+          [...homeEvents].sort((a, b) => {
+            const dateA = new Date(`${a.month} ${a.date}, ${a.year}`).getTime() || 0;
+            const dateB = new Date(`${b.month} ${b.date}, ${b.year}`).getTime() || 0;
+            const isAUpcoming = a.status?.toLowerCase() === 'upcoming';
+            const isBUpcoming = b.status?.toLowerCase() === 'upcoming';
+            if (isAUpcoming && !isBUpcoming) return -1;
+            if (!isAUpcoming && isBUpcoming) return 1;
+            if (isAUpcoming) return dateA - dateB;
+            return dateB - dateA;
+          }).map((item) => (
             <EventCard 
               key={item.id} 
               {...item}
