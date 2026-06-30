@@ -8,9 +8,10 @@
     }
 }
 
+
 .about-page {
     background-color: #fff;
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 .about-page.page-entering {
