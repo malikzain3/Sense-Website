@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import About from "./Components/About";
 import Events from "./Components/Events";
 import Gallery from "./Components/Gallery";
@@ -22,17 +22,8 @@ import TermsAndConditions from './Pages/TermsAndConditions'
 import PrivacyPolicy from './Pages/PrivacyPolicy'
 
 function HomePage() {
-  const homeRef = useRef(null);
-
-  useEffect(() => {
-    if (!homeRef.current) return;
-    const el = homeRef.current;
-    const raf = requestAnimationFrame(() => el.classList.add("home-entered"));
-    return () => cancelAnimationFrame(raf);
-  }, []);
-
   return (
-    <div ref={homeRef} className="home-entering">
+    <div>
       <HeroSection />
       <About />
       <Events />
@@ -68,7 +59,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<HomePage />} />
-
         <Route path="/EventsPage" element={<EventsPage />} />
         <Route path="/LoginPage" element={<LoginPage />} />
         <Route path="/Dashboard" element={<Dashboard />} />
