@@ -4,8 +4,8 @@ import senseLogo from "../assets/SENSE-LOGO@4x-8.png";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Link } from 'react-router-dom'
-import { FaInstagram, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaInstagram, FaLinkedin, FaWhatsapp , FaFacebook} from "react-icons/fa";
 import "./Footer.css";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,7 +34,7 @@ const Footer = () => {
             scrub: true,
             invalidateOnRefresh: true,
           },
-        }
+        },
       );
 
       return () => {
@@ -42,7 +42,7 @@ const Footer = () => {
         tween.kill();
       };
     },
-    { dependencies: [location.pathname] }
+    { dependencies: [location.pathname] },
   );
 
   React.useEffect(() => {
@@ -71,18 +71,35 @@ const Footer = () => {
               <div className="Footer-Sense-Name">
                 Software Engineering Society For Excellence - IIUI
               </div>
-              <div className="gmail">
-                sense.iiui.dse@gmail.com
-              </div>
+              <div className="gmail">sense.iiui.dse@gmail.com</div>
               <div className="media-links">
-                <a href="https://wa.me/+923125861129" target="_blank" rel="noopener noreferrer">
-                  <FaWhatsapp className="media-icon"/>
+                <a
+                  href="https://wa.me/+923125861129"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaWhatsapp className="media-icon" />
                 </a>
-                <a href="https://www.instagram.com/sense.iiui?igsh=MXF3azY5dmJ3dGZidw==" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.instagram.com/sense.iiui?igsh=MXF3azY5dmJ3dGZidw=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaInstagram className="media-icon" />
                 </a>
-                <a href="https://www.linkedin.com/company/sense-iiui/" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.linkedin.com/company/sense-iiui/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <FaLinkedin className="media-icon" />
+                </a>
+                <a
+                  href="https:/www.facebook.com/profile.php?id=61581109268606"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FaFacebook className="media-icon" />
                 </a>
               </div>
             </div>
@@ -103,18 +120,39 @@ const Footer = () => {
               <div className="Footer-About-Us">
                 <div className="Footer-About-Us-Heading">About Us</div>
                 <div className="Footer-About-Us-links links">
-                  <Link to="/AboutPage#history" onClick={() => setIsMenuOpen(false)}>History</Link>
-                  <Link to="/AboutPage#vision" onClick={() => setIsMenuOpen(false)}>Our Vision</Link>
-                  <Link to="/AboutPage#mission" onClick={() => setIsMenuOpen(false)}>Our Mission</Link>
+                  <Link
+                    to="/AboutPage#history"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    History
+                  </Link>
+                  <Link
+                    to="/AboutPage#vision"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Our Vision
+                  </Link>
+                  <Link
+                    to="/AboutPage#mission"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Our Mission
+                  </Link>
                 </div>
               </div>
 
               <div className="Footer-Explore">
                 <div className="Footer-Explore-Heading">Explore</div>
                 <div className="Footer-Explore-links links">
-                  <Link to="/EventsPage" onClick={() => setIsMenuOpen(false)}>Events</Link>
-                  <Link to="/TeamPage" onClick={() => setIsMenuOpen(false)}>Team</Link>
-                  <Link to="/GalleryPage" onClick={() => setIsMenuOpen(false)}>Gallery</Link>
+                  <Link to="/EventsPage" onClick={() => setIsMenuOpen(false)}>
+                    Events
+                  </Link>
+                  <Link to="/TeamPage" onClick={() => setIsMenuOpen(false)}>
+                    Team
+                  </Link>
+                  <Link to="/GalleryPage" onClick={() => setIsMenuOpen(false)}>
+                    Gallery
+                  </Link>
                 </div>
               </div>
 
@@ -138,7 +176,8 @@ const Footer = () => {
               </div>
             </div>
             <div className="Footer-Bottom-mid">
-              &copy; 2024 Software Engineering Society For Excellence - IIUI. All rights reserved.
+              &copy; 2024 Software Engineering Society For Excellence - IIUI.
+              All rights reserved.
             </div>
             <div className="Footer-Bottom-right">
               Developed by SENSE Web Team

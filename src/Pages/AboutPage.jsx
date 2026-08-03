@@ -115,9 +115,9 @@ const AboutPage = () => {
                     <div className="history-timeline">
                         {[
                             { year: '2025', event: 'SENSE founded at IIUI' },
-                            { year: '2025', event: 'First inter-university hackathon' },
+                            { year: '2025', event: 'First Programing Fundamentals Workshop' },
                             { year: '2025', event: 'Partnered with 20+ tech companies' },
-                            { year: '2025', event: 'Reached 100+ active members' },
+                            { year: '2025', event: 'Reached 30+ active members' },
                             { year: '2026', event: 'Launched online workshops during Lockdown' },
                             { year: '2026', event: 'Launched the SENSE-IIUI official website' },
                         ].map((item, i) => (

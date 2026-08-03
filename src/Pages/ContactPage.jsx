@@ -88,13 +88,13 @@ const ContactPage = () => {
           <div className="social-media-section">
             <strong>Connect With Us:</strong>
             <div className="social-links-vertical">
-              <a href="#" target="_blank" rel="noopener noreferrer" className="social-link">
+              <a href="https://www.instagram.com/sense.iiui/" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaInstagram className="social-icon" /> Instagram
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="social-link">
+              <a href="https:/linkedin.com/company/sense-iiui/" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaLinkedin className="social-icon" /> LinkedIn
               </a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="social-link">
+              <a href="https:/www.facebook.com/profile.php?id=61581109268606" target="_blank" rel="noopener noreferrer" className="social-link">
                 <FaFacebook className="social-icon" /> Facebook
               </a>
             </div>
